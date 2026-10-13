@@ -1,12 +1,18 @@
 ﻿using UnityEngine;
+using System.Collections;
+using NUnit.Framework;
 
-namespace Environment.Tasks {
-    [CreateAssetMenu(fileName = "DebugPrint Task", menuName = "DebugPrint Task")]
-    public class DebugPrintTask : Task {
+namespace Environment.Tasks
+{
+    [CreateAssetMenu(fileName = "Tasks", menuName = "DebugPrint Task")]
+    public class DebugPrintTask : Task
+    {
         [SerializeField]
-        private string textToPrint = "Hi, I'm a test task!";
+        private string textToPrint = "dö";
+        
 
-        public override void Execute() {
+        public override void Execute()
+        {
             Debug.Log(textToPrint);
         }
     }
