@@ -6,7 +6,7 @@ namespace Environment.Tasks {
     public class playerTaskManager : MonoBehaviour {
         //[SerializeField] Task tasks;
         [SerializeField] TextMeshProUGUI taskText;
-        Stack<Task> playerTasks = new Stack<Task>();
+        public Stack<Task> playerTasks = new Stack<Task>();
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start() {
 

@@ -8,11 +8,11 @@ namespace Environment.Tasks
     public class DebugPrintTask : Task
     {
         [SerializeField]
-        private string textToPrint = "dö";
+        private string textToPrint;
         
 
-        public override void Execute()
-        {
+        public override void Execute(Task textToPrint)
+        {            
             Debug.Log(textToPrint);
         }
     }

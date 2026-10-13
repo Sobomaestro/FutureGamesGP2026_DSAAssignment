@@ -1,7 +1,9 @@
+using Environment;
+using Environment.Tasks;
 using UnityEngine;
 
-public class ExeComputor : MonoBehaviour
-{
+public class ExeComputor : Computer, IInteractable
+{    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +14,8 @@ public class ExeComputor : MonoBehaviour
     void Update()
     {
         
+    }
+    public override void OnInteract() {
+        debugTasks.Execute(taskManager.playerTasks.Pop());
     }
 }

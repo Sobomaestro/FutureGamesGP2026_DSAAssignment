@@ -9,7 +9,8 @@ namespace Environment
 {
     public class Computer : MonoBehaviour, IInteractable
     {
-        [SerializeField] playerTaskManager playerTasks;
+        [SerializeField] public DebugPrintTask debugTasks;
+        [SerializeField] public playerTaskManager taskManager;
         [SerializeField] List<Task> listOfBullshit = new List<Task>();
         Stack<Task> taskList = new Stack<Task>();
         
@@ -20,10 +21,10 @@ namespace Environment
         }
 
 
-        public void OnInteract()
+        public virtual void OnInteract()
         {
             if(listOfBullshit.Count > 0) {
-                playerTasks.TaskAdder(listOfBullshit[0]);
+                taskManager.TaskAdder(listOfBullshit[0]);
                 listOfBullshit.RemoveAt(0);
             }
             else Debug.Log("No more tasks in need of being done, my liege");
