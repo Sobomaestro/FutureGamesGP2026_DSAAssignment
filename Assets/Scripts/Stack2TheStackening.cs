@@ -11,19 +11,21 @@ public class Stack2TheStackening<T> {
     {            
         this.stackData = new List<T>();
     }
-    
+
     public void Push(T newItem) {
-        stackData.Insert(0, newItem);        
+        if(stackData.Count > 0) { stackData.Insert(stackData.Count, newItem); }
+        else stackData.Insert(0, newItem);
     }
+    
     
     public T Pop()
         {
-        T index0 = stackData[0];
-        stackData.RemoveAt(0);
+        T index0 = stackData[stackData.Count - 1];
+        stackData.RemoveAt(stackData.Count - 1);
         return index0;
         }
     public T Peek() {
-        T index0 = stackData[0];        
+        T index0 = stackData[stackData.Count - 1];        
         return index0;
     }
 
