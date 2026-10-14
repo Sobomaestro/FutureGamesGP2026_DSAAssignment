@@ -15,7 +15,16 @@ public class ExeComputor : Computer, IInteractable
     {
         
     }
-    public override void OnInteract() {
-        debugTasks.Execute(taskManager.playerTasks.Pop());
+    public override void OnInteract()
+    {
+        if (taskManager.playerTasks.Count > 0)
+        {
+        Task incomingTask = taskManager.TaskExecutor(); 
+        debugTasks.Execute(incomingTask);
+        
+        }
+        else Debug.Log("nothing to execute my liege");
+        taskManager.UpdateTask();
+
     }
 }

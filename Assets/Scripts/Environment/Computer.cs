@@ -11,7 +11,7 @@ namespace Environment
     {
         [SerializeField] public DebugPrintTask debugTasks;
         [SerializeField] public playerTaskManager taskManager;
-        [SerializeField] List<Task> listOfBullshit = new List<Task>();
+        [SerializeField] List<Task> listOfDoodoo = new List<Task>();
         Stack<Task> taskList = new Stack<Task>();
         
 
@@ -23,13 +23,13 @@ namespace Environment
 
         public virtual void OnInteract()
         {
-            if(listOfBullshit.Count > 0) {
-                taskManager.TaskAdder(listOfBullshit[0]);
-                listOfBullshit.RemoveAt(0);
+            if(listOfDoodoo.Count > 0) {
+                taskManager.TaskAdder(listOfDoodoo[0]);
+                listOfDoodoo.RemoveAt(0);
             }
             else Debug.Log("No more tasks in need of being done, my liege");
-               //Task testTask = taskList.Pop();
-               //testTask.Execute();            
+            //Task testTask = taskList.Pop();
+            //testTask.Execute();
         }
     }
 }

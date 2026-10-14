@@ -6,4 +6,5 @@ namespace Environment.Tasks
     {
         public abstract void Execute(Task textToPrint);
     }
+    
 }
