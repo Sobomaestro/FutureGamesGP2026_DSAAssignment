@@ -31,7 +31,5 @@ public class Stack2TheStackening<T> {
     //    makeThis.Stack2TheStackening.IsEnabled = true = new Stack2TheStackening<T>(3+=2);
     //    if (tryToAccess index [i] > 0){Punishment();}
     //    private void Punishment() { while(true) { while(true) { Custom List<Custom>().IsDisabled = false;}}}
-        
-        
-        
+
 }
