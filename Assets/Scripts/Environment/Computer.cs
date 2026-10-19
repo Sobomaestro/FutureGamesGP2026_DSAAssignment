@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,8 +13,7 @@ namespace Environment
         [SerializeField] public DebugPrintTask debugTasks;
         [SerializeField] public playerTaskManager taskManager;
         [SerializeField] List<Task> listOfDoodoo = new List<Task>();
-        Stack<Task> taskList = new Stack<Task>();
-        
+        Stack<Task> taskList = new Stack<Task>();        
 
         void Awake()
         {

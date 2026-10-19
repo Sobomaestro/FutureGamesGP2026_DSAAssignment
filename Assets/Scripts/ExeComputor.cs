@@ -23,7 +23,7 @@ public class ExeComputor : Computer, IInteractable
         debugTasks.Execute(incomingTask);
         
         }
-        else Debug.Log("nothing to execute my liege");
+        else Debug.Log("nothing to execute, my liege");
         taskManager.UpdateTask();
 
     }

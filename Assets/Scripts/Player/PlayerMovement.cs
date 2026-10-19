@@ -14,6 +14,7 @@ namespace Player {
         private InputActionReference moveAction = null;
         [SerializeField]
         private InputActionReference interactAction = null;
+        [SerializeField] Rigidbody rb;
 
         [Header("Movement")]
         [SerializeField]
@@ -21,11 +22,12 @@ namespace Player {
         [Header("Interaction")]
         [SerializeField]
         private float interactionRange = 5f;
-
+        Wiiwoo<float> bigboy = new Wiiwoo<float>();
         private Vector2 movementInput = Vector2.zero;
 
         private void Awake()
         {
+            
             if(!animator)
             {
                 Debug.LogError("Animator not set");
@@ -56,15 +58,14 @@ namespace Player {
             IInteractable interactable = hit.collider?.gameObject.GetComponentInParent<IInteractable>();
             if(interactable != null)
             {
+
                 interactable.OnInteract();
             }
         }
 
-        private void Update()
-        {
+        private void Update() {
             transform.position += (new Vector3(movementInput.x, 0f, movementInput.y)) * (movementSpeed * Time.deltaTime);
         }
-
 
         private void OnEnable()
         {
