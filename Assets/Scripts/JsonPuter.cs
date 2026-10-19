@@ -1,11 +1,20 @@
 using Environment;
 using Environment.Tasks;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class JsonPuter : Computer, IInteractable
 {
-    [SerializeField] ScriptableObject jsonLoader;
-    EmployeeArray[] employeeData = new EmployeeArray[5];
+    public Employees employees;
+    public TextAsset jsonFile;
+    public EmployeeList myEmployeeList = new EmployeeList();
+    public Employees[] employeebois = new Employees[5];
+    string[] name = new string[5];
+    int[] employeeID = new int[5];
+    bool[] hasEngineRoomClearance = new bool[5];
+    string[] lastEntranceInEngineRoom = new string[5];
+    string[] lastExitFromEngineRoom = new string[5];
+    //public List<EmployeeList> employeeData = new List<EmployeeList>();    
     
 
 
@@ -22,6 +31,13 @@ public class JsonPuter : Computer, IInteractable
     }
     public override void OnInteract()
     {
+        myEmployeeList = JsonUtility.FromJson<EmployeeList>(jsonFile.text);
+        foreach(employees in myEmployeeList)
+
+        Debug.Log(myEmployeeList.ToString());
+    }
+    public void JsonIteration() {
+
 
     }
 }

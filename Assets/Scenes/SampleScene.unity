@@ -4611,8 +4611,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -255.69998, y: 197.42}
-  m_SizeDelta: {x: -550.60004, y: -423.75998}
+  m_AnchoredPosition: {x: -432.24997, y: 300.82}
+  m_SizeDelta: {x: -903.7, y: -630.55994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1488570276
 MonoBehaviour:
@@ -6103,7 +6103,10 @@ MonoBehaviour:
   debugTasks: {fileID: 0}
   taskManager: {fileID: 8404672306686481746}
   listOfDoodoo: []
-  jsonLoader: {fileID: 11400000, guid: f23815d7c6dbced4f9f0ee3722e8635f, type: 2}
+  employees: {fileID: 0}
+  jsonFile: {fileID: 4900000, guid: f85ee0ac905ddb743a2030d7cae632be, type: 3}
+  myEmployeeList:
+    employees: []
 --- !u!1001 &2077143801
 PrefabInstance:
   m_ObjectHideFlags: 0

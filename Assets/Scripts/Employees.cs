@@ -1,7 +1,9 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
-[System.Serializable]
+
+[Serializable]
 public class Employees : MonoBehaviour
 {
     public string name;
@@ -18,6 +20,7 @@ public class Employees : MonoBehaviour
     }
 }
 [Serializable]
-public class EmployeeArray {
-    public Employees[] employeeArray;
+public class EmployeeList {
+    public List<Employees> employees = new List<Employees>();
+    //public Employees[] employees;
 }

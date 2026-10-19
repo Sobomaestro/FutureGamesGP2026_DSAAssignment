@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - debugTasks: {instanceID: 0}
   - taskManager: {instanceID: 0}
-  - jsonLoader: {fileID: 11400000, guid: a9c07d6b30a4706488aec1b3f8e36d43, type: 2}
+  - jsonLoader: {fileID: 11400000, guid: 65528bd323009354bb0407ede3295433, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

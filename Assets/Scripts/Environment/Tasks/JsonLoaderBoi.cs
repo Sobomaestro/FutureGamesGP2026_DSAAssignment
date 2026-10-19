@@ -10,9 +10,11 @@ namespace Environment.Tasks {
         [SerializeField] private string textToPrint;
         [SerializeField] private TextAsset jsonFile;
 
-        public TextAsset JsonTransfer() {
-            return jsonFile;
-                    }
+        public string JsonTransfer() {
+
+            return jsonFile.ToString();
+
+        }
         public override void Execute(Task textToPrint) {
 
         }

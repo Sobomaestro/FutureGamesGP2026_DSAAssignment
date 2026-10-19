@@ -14,7 +14,7 @@ namespace Environment.Tasks {
         private Employees employees;
         private string textToPrint = "It's Json time";
 
-        EmployeeArray[] employeeData = new EmployeeArray[5];
+        //EmployeeArray[] employeeData = new EmployeeArray[5];
 
 
         //string[] jsonData = Directory.GetFiles(Application.persistentDataPath, "*.json");
@@ -29,7 +29,5 @@ namespace Environment.Tasks {
         //    DateTime lastEntranceInEngineRoom = employeeData.lastEntranceInEngineRoom;
         //    DateTime lastExitFromEngineRoom = employeeData.lastExitFromEngineRoom;
         //}
-
-
     }
 }
