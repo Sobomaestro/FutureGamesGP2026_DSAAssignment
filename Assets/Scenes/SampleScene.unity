@@ -2833,6 +2833,133 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 0, z: 4}
   m_Center: {x: 0, y: -3.2059307e-31, z: 0}
+--- !u!1 &887563671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887563674}
+  - component: {fileID: 887563673}
+  - component: {fileID: 887563672}
+  m_Layer: 0
+  m_Name: Spot Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &887563672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887563671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!108 &887563673
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887563671}
+  m_Enabled: 1
+  serializedVersion: 13
+  m_Type: 0
+  m_Color: {r: 0.22104879, g: 0.5176471, b: 0.027450986, a: 1}
+  m_Intensity: 0
+  m_Range: 50
+  m_SpotAngle: 48.90845
+  m_InnerSpotAngle: 0
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 8.18
+  m_ColorTemperature: 10727
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShapeRadius: 0.025
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!4 &887563674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887563671}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.3332148, y: -0, z: -0, w: 0.94285095}
+  m_LocalPosition: {x: -0.13, y: 8.87, z: -0.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 38.928, y: 0, z: 0}
 --- !u!1001 &942139399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5753,6 +5880,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.999998, y: 4.25, z: 1.0009978}
   m_Center: {x: -1.5000007, y: 2.125, z: -0.5004989}
+--- !u!114 &1935928924 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
+  m_PrefabInstance: {fileID: 6825722813265351610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b5592b25c44429b914438d9e820ae26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Computer
 --- !u!1001 &1938831992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6103,7 +6241,12 @@ MonoBehaviour:
   debugTasks: {fileID: 0}
   taskManager: {fileID: 8404672306686481746}
   listOfDoodoo: []
-  employees: {fileID: 0}
+  employees:
+    name: 
+    employeeId: 0
+    hasEngineRoomClearance: 0
+    lastEntranceInEngineRoom: 
+    lastExitFromEngineRoom: 
   jsonFile: {fileID: 4900000, guid: f85ee0ac905ddb743a2030d7cae632be, type: 3}
   myEmployeeList:
     employees: []
@@ -6442,6 +6585,10 @@ PrefabInstance:
       propertyPath: taskManager
       value: 
       objectReference: {fileID: 8404672306686481746}
+    - target: {fileID: 5645147330047530577, guid: bc42dc49da4dab34d8a04878c357ddc5, type: 3}
+      propertyPath: motherComputer
+      value: 
+      objectReference: {fileID: 1935928924}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6477,7 +6624,7 @@ PrefabInstance:
       objectReference: {fileID: 8404672306686481746}
     - target: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
       propertyPath: listOfDoodoo.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
       propertyPath: listOfBullshit.Array.size
@@ -6527,6 +6674,10 @@ PrefabInstance:
       propertyPath: 'listOfDoodoo.Array.data[9]'
       value: 
       objectReference: {fileID: 11400000, guid: f841369c04492544fb66191e1e2e7d82, type: 2}
+    - target: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
+      propertyPath: 'listOfDoodoo.Array.data[10]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 76bd68e8a43987445bf7e5f337040fac, type: 2}
     - target: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
       propertyPath: 'listOfBullshit.Array.data[0]'
       value: 
@@ -6773,6 +6924,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Environment.Tasks.playerTaskManager
   taskText: {fileID: 2089864203}
+  computer: {fileID: 1935928924}
+  jsonComputer: {fileID: 2053960122}
+  employeeTask: {fileID: 11400000, guid: 76bd68e8a43987445bf7e5f337040fac, type: 2}
+  light: {fileID: 410087040}
+  spotLight: {fileID: 887563673}
+  employeeList: []
 --- !u!54 &8404672306686481748 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7142728723388556604, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
@@ -6783,6 +6940,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
+  - {fileID: 887563674}
   - {fileID: 832575519}
   - {fileID: 1141579140}
   - {fileID: 8404672306686481740}

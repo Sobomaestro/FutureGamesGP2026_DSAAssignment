@@ -18,7 +18,7 @@ namespace Environment.Tasks {
 
 
         //string[] jsonData = Directory.GetFiles(Application.persistentDataPath, "*.json");
-        public override void Execute(Task textToPrint) { Debug.Log(textToPrint); }
+        public override void Execute() { Debug.Log(textToPrint); }
 
         //void LoadScore() {
         //    employeeData = JsonUtility.FromJson<EmployeeArray[]>(jsonFile.text);

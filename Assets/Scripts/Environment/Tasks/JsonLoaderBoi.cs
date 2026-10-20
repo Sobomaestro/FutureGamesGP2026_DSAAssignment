@@ -15,7 +15,7 @@ namespace Environment.Tasks {
             return jsonFile.ToString();
 
         }
-        public override void Execute(Task textToPrint) {
+        public override void Execute() {
 
         }
     }

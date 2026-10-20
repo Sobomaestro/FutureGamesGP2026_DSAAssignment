@@ -11,8 +11,8 @@ namespace Environment.Tasks
         private string textToPrint;
         
 
-        public override void Execute(Task textToPrint)
-        {            
+        public override void Execute()
+        {
             Debug.Log(textToPrint);
         }
     }

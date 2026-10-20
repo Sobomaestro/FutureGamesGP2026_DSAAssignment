@@ -1,9 +1,11 @@
 using Environment;
 using Environment.Tasks;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ExeComputor : Computer, IInteractable
-{    
+{
+    [SerializeField] Computer motherComputer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,12 +21,26 @@ public class ExeComputor : Computer, IInteractable
     {
         if (taskManager.playerTasks.Count > 0)
         {
-        Task incomingTask = taskManager.TaskExecutor(); 
-        debugTasks.Execute(incomingTask);
-        
+            Task incomingTask = taskManager.TaskPeeker();
+            if (incomingTask is DebugPrintTask fuckertask)
+            {
+                taskManager.TaskExecutor();
+                incomingTask.Execute();
+                debugTasks.Execute();
+            }            
+            taskManager.UpdateTask();
         }
-        else Debug.Log("nothing to execute, my liege");
-        taskManager.UpdateTask();
+        else if (taskManager.playerTasks.Count == 0 && motherComputer.listOfDoodoo.Count > 0)
+        {
+            Debug.Log("there is yet stuff to be done");
+            taskManager.LazyTasker();
+        }
+        else
+        {
+            Debug.Log("nothing to execute, my liege");
+            taskManager.UpdateTask();
+            taskManager.LerpReset();
+        }
 
     }
 }

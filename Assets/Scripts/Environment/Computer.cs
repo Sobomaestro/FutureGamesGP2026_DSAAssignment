@@ -12,7 +12,7 @@ namespace Environment
     {
         [SerializeField] public DebugPrintTask debugTasks;
         [SerializeField] public playerTaskManager taskManager;
-        [SerializeField] List<Task> listOfDoodoo = new List<Task>();
+        [SerializeField] public List<Task> listOfDoodoo = new List<Task>();
         Stack<Task> taskList = new Stack<Task>();        
 
         void Awake()
@@ -20,14 +20,21 @@ namespace Environment
      
         }
 
+        public void RecycledTasks(Task thrown)
+        {
+            listOfDoodoo.Add(thrown);
+        }
+
 
         public virtual void OnInteract()
         {
             if(listOfDoodoo.Count > 0) {
-                taskManager.TaskAdder(listOfDoodoo[0]);
-                listOfDoodoo.RemoveAt(0);
+                int randomIndex = Random.Range(0, listOfDoodoo.Count);
+                taskManager.TaskAdder(listOfDoodoo[randomIndex]);
+                listOfDoodoo.RemoveAt(randomIndex);
             }
             else Debug.Log("No more tasks in need of being done, my liege");
+            
             //Task testTask = taskList.Pop();
             //testTask.Execute();
         }

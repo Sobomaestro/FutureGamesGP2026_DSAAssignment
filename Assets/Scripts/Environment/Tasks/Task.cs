@@ -4,7 +4,7 @@ namespace Environment.Tasks
 {
     public abstract class Task : ScriptableObject
     {
-        public abstract void Execute(Task textToPrint);
+        public abstract void Execute();
     }
     
 }
