@@ -13,7 +13,7 @@ namespace Environment
         [SerializeField] public DebugPrintTask debugTasks;
         [SerializeField] public playerTaskManager taskManager;
         [SerializeField] public List<Task> listOfDoodoo = new List<Task>();
-        Stack<Task> taskList = new Stack<Task>();        
+        Stack<Task> taskList = new Stack<Task>();
 
         void Awake()
         {

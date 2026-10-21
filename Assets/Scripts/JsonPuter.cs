@@ -19,12 +19,18 @@ public class JsonPuter : Computer, IInteractable
     string[] lastEntranceInEngineRoom = new string[5];
     string[] lastExitFromEngineRoom = new string[5];
     Employees[] employeeArray = new Employees[5];
+    [SerializeField] DateTime[] lastExitDateTime = new DateTime[3];
 
 
     public override void OnInteract() {
         Debug.Log(jsonFile.text);
         myEmployeeList = JsonUtility.FromJson<EmployeeList>(jsonFile.text);
-
+        var dateTime = DateTime.Parse(myEmployeeList.employees[0].lastEntranceInEngineRoom);
+        for(int i = 0; i < myEmployeeList.employees.Count; i++)
+        {
+            lastExitDateTime[i] = DateTime.Parse(myEmployeeList.employees[i].lastEntranceInEngineRoom);
+            Debug.Log(lastExitDateTime[i]);
+        }
     }
 
 
