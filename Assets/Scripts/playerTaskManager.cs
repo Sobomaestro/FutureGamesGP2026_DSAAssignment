@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using System.Threading;
 using UnityEngine.Experimental.GlobalIllumination;
 using System;
+using UnityEngine.UI;
 
 namespace Environment.Tasks
 {
@@ -18,6 +19,7 @@ namespace Environment.Tasks
         public ScriptableObject employeeTask;
         [SerializeField] Light light;
         [SerializeField] Light spotLight;
+        [SerializeField] Button emailButton;
         public Stack2TheStreets<Task> playerTasks = new Stack2TheStreets<Task>();
         public List<EmployeeList> employeeList = new List<EmployeeList>();
         float t = 0;
@@ -35,6 +37,7 @@ namespace Environment.Tasks
         float timer;
         bool colorLerp = false;
         bool colorReset = false;
+        Task currentTask;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
 
         Wiiwoo<int> age = new Wiiwoo<int>();
@@ -78,7 +81,7 @@ namespace Environment.Tasks
         public void TaskAdder(Task incomingTask)
         {
             playerTasks.PushIt(incomingTask);
-            UpdateTask();
+            UpdateTask(incomingTask);
         }
         public void LerpReset()
         {
@@ -87,13 +90,15 @@ namespace Environment.Tasks
             spotLight.intensity = 0;
         }
 
-        public void UpdateTask()
+        public void UpdateTask(Task incomingTask)
         {
+            currentTask = incomingTask;
             if (playerTasks.Count > 0)
             {
                 taskText.text = playerTasks.Peekaboo().ToString();
             }
             else taskText.text = "All tasks completed my liege. Good job";
+            CheckEmail();
         }
         public void LazyTasker()
         {
@@ -133,6 +138,14 @@ namespace Environment.Tasks
         public void ForsakenTasks()
         {
             taskText.text = "Thought you could get away? :)";
+        }
+        void CheckEmail()
+        {
+            if (currentTask is EmailTask beastTask)
+            {
+                emailButton.interactable = true;
+            }
+            else emailButton.interactable = false;
         }
     }
 }

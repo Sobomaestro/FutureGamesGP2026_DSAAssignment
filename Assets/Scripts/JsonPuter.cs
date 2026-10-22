@@ -20,13 +20,35 @@ public class JsonPuter : Computer, IInteractable
     string[] lastExitFromEngineRoom = new string[5];
     Employees[] employeeArray = new Employees[5];
     [SerializeField] DateTime[] lastExitDateTime = new DateTime[3];
-
-
+    public InteractableTasks inter;
+    public ScriptableObject scriptableObject;
     public override void OnInteract() {
-        Debug.Log(jsonFile.text);
-        myEmployeeList = JsonUtility.FromJson<EmployeeList>(jsonFile.text);
+
+        Task incomingTask = taskManager.TaskPeeker();
+        Debug.Log(incomingTask);
+        if (incomingTask is InteractableTasks interactask)
+        {
+            taskManager.TaskExecutor();
+            incomingTask.Execute();
+            ExecuteJason();
+            //Debug.Log(jsonFile.text);
+            //myEmployeeList = JsonUtility.FromJson<EmployeeList>(jsonFile.text);
+            //var dateTime = DateTime.Parse(myEmployeeList.employees[0].lastEntranceInEngineRoom);
+            //for (int i = 0; i < myEmployeeList.employees.Count; i++)
+            //{
+            //    lastExitDateTime[i] = DateTime.Parse(myEmployeeList.employees[i].lastEntranceInEngineRoom);
+            //    Debug.Log(lastExitDateTime[i]);
+            //}
+            taskManager.UpdateTask(incomingTask);
+        }
+        Debug.Log("you have no available tasks for this workstation");
+    }
+
+    public void ExecuteJason()
+    {
+        myEmployeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
         var dateTime = DateTime.Parse(myEmployeeList.employees[0].lastEntranceInEngineRoom);
-        for(int i = 0; i < myEmployeeList.employees.Count; i++)
+        for (int i = 0; i < myEmployeeList.employees.Count; i++)
         {
             lastExitDateTime[i] = DateTime.Parse(myEmployeeList.employees[i].lastEntranceInEngineRoom);
             Debug.Log(lastExitDateTime[i]);

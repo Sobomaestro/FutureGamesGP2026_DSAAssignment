@@ -22,14 +22,17 @@ public class ExeComputor : Computer, IInteractable
         if (taskManager.playerTasks.Count > 0)
         {
             Task incomingTask = taskManager.TaskPeeker();
-            if (incomingTask is DebugPrintTask fuckertask)
+            if (incomingTask is DebugPrintTask debugTask)
             {
                 taskManager.TaskExecutor();
                 incomingTask.Execute();
                 debugTasks.Execute();
-            }            
-            taskManager.UpdateTask();
+            }         
+            else if (incomingTask is InteractableTasks interactTask)
+            { Debug.Log("This task needs a stronger workstation than this..."); }
+            taskManager.UpdateTask(incomingTask);
         }
+        
         else if (taskManager.playerTasks.Count == 0 && motherComputer.listOfDoodoo.Count > 0)
         {
             Debug.Log("there is yet stuff to be done");
@@ -38,7 +41,7 @@ public class ExeComputor : Computer, IInteractable
         else
         {
             Debug.Log("nothing to execute, my liege");
-            taskManager.UpdateTask();
+            taskManager.UpdateTask(null);
             taskManager.LerpReset();
         }
 

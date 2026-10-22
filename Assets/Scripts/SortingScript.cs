@@ -8,12 +8,13 @@ using Unity.VisualScripting;
 public class SortingScript : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI generatedNumber;
-    [SerializeField] TextMeshProUGUI[] numberBox = new TextMeshProUGUI[20];
+    TextMeshProUGUI[] numberBox = new TextMeshProUGUI[20];
     [SerializeField] Transform parent;
     [SerializeField] VerticalLayoutGroup Contentbox;
     [SerializeField] List<TextMeshProUGUI> boxList = new List<TextMeshProUGUI>();
     [SerializeField] UnityEngine.UI.Button sortBtn;
     [SerializeField] UnityEngine.UI.Button genBtn;
+    bool generated = false;
     int[] randomNumberArray;
     
     void Awake()
@@ -27,12 +28,18 @@ public class SortingScript : MonoBehaviour
         for (int i = 0; i < randomNumberArray.Length; i++)
             {              
                 int randomNumber = Random.Range(0, 100);
-                randomNumberArray[i] = randomNumber;     
+                randomNumberArray[i] = randomNumber;
+            if (!generated)
+            {
                 numberBox[i] = Instantiate(generatedNumber, transform.position, Quaternion.identity, parent);
                 numberBox[i].name = "numberBox" + i;
+                
+            }
                 numberBox[i].text = randomNumber.ToString();
-                boxList.Add(numberBox[i]);
-            }      
+                //boxList.Add(numberBox[i]);
+            }
+        generated = true;
+        //genBtn.interactable = false;
     }
 
     public void ButtonClick()
@@ -43,15 +50,15 @@ public class SortingScript : MonoBehaviour
     public void ArraySorter()
     {
         {            
-            for (int i = 0; i < boxList.Count -1; i++)
+            for (int i = 0; i < numberBox.Length -1; i++)
             {
-                for (int j = i + 1; j < boxList.Count; j++)
+                for (int j = i + 1; j < numberBox.Length; j++)
                 {
-                    if (int.Parse(boxList[i].text) > int.Parse(boxList[j].text))
+                    if (int.Parse(numberBox[i].text) > int.Parse(numberBox[j].text))
                     {
-                        int temp = int.Parse(boxList[j].text);
-                        boxList[j].text = boxList[i].text;
-                        boxList[i].text = temp.ToString();
+                        int temp = int.Parse(numberBox[j].text);
+                        numberBox[j].text = numberBox[i].text;
+                        numberBox[i].text = temp.ToString();
                         numberBox[i].text = temp.ToString();
                     }
                 }                
