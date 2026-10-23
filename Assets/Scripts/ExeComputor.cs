@@ -30,7 +30,6 @@ public class ExeComputor : Computer, IInteractable
             }         
             else if (incomingTask is InteractableTasks interactTask)
             { Debug.Log("This task needs a stronger workstation than this..."); }
-            taskManager.UpdateTask(incomingTask);
         }
         
         else if (taskManager.playerTasks.Count == 0 && motherComputer.listOfDoodoo.Count > 0)

@@ -22,8 +22,13 @@ public class Stack2TheStreets<T> {
     }
 
     public T Peekaboo() {
-        T index0 = stackData[stackData.Count - 1];
-        return index0;
+        if (stackData.Count > 0)
+        {
+            T index0 = stackData[stackData.Count - 1];
+            return index0;
+        }
+        else
+            return default(T);
     }
     public void ClearTheStreets() {
         stackData.Clear();

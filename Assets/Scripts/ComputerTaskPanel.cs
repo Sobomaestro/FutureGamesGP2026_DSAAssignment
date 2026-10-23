@@ -1,8 +1,9 @@
 using Environment;
+using Environment.Tasks;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
 using static System.Net.WebRequestMethods;
 namespace Environment
 {
@@ -20,13 +21,20 @@ namespace Environment
         [SerializeField] Button mailSend;
         [SerializeField] CanvasGroup mailPanel;
         [SerializeField] Canvas computerUI;
+        [SerializeField] playerTaskManager taskManager;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         [SerializeField] private int gameClickCounter; 
         void Awake()
         {
             mailPanel.interactable = false;
         }
-
+        void Update()
+        {
+            if (Input.GetButton("Cancel"))
+            {
+                computerUI.enabled = false;
+            }
+        }
         public void EmailBtn()
         {
             string beastMail = "Hello, This is mr baest. Thanks you for watchig all of my vidos. You aer bigest fan, i rewrad you with free $BeastCoins$. Replay with yor credit card detaels, teh dtae of your berfth, the naem of yiur fisrt pet, an ur favriote clolr";
@@ -75,7 +83,8 @@ namespace Environment
             mailInput.text = " ";
             mailPanel.interactable = false;
             beast.alpha = 0;
-
+            Task currentTask = taskManager.TaskExecutor();
+            currentTask.Execute();
         }
         public void ExitBtn()
         {

@@ -106,7 +106,11 @@ namespace Environment.Tasks
         }
         public Task TaskExecutor()
         {
-            return playerTasks.PopIt();
+            Task temp = playerTasks.PopIt();
+            currentTask = TaskPeeker();
+            UpdateTask(currentTask);
+            return temp;
+            
         }
         public Task TaskPeeker()
         {

@@ -39,7 +39,6 @@ public class JsonPuter : Computer, IInteractable
             //    lastExitDateTime[i] = DateTime.Parse(myEmployeeList.employees[i].lastEntranceInEngineRoom);
             //    Debug.Log(lastExitDateTime[i]);
             //}
-            taskManager.UpdateTask(incomingTask);
         }
         Debug.Log("you have no available tasks for this workstation");
     }
