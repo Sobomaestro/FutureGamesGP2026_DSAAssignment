@@ -20,6 +20,7 @@ namespace Environment.Tasks
         [SerializeField] Light light;
         [SerializeField] Light spotLight;
         [SerializeField] Button emailButton;
+        [SerializeField] Button taskButton;
         public Stack2TheStreets<Task> playerTasks = new Stack2TheStreets<Task>();
         public List<EmployeeList> employeeList = new List<EmployeeList>();
         float t = 0;
@@ -124,7 +125,8 @@ namespace Environment.Tasks
                 {
                     Task temp = playerTasks.PopIt();
                     computer.RecycledTasks(temp);
-                   
+                    if (computer.listOfDoodoo.Count > 0)
+                    { taskButton.interactable = true; }
                 }
                 ForsakenTasks();
                 ColorTemperatureLerp();

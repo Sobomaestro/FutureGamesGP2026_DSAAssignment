@@ -1,2 +1,12 @@
 fileFormatVersion: 2
 guid: 2f89f357cec56b842b35326d01a71aca
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - beastCoin: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

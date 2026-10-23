@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using static System.Net.WebRequestMethods;
 namespace Environment
 {
@@ -22,22 +23,24 @@ namespace Environment
         [SerializeField] CanvasGroup mailPanel;
         [SerializeField] Canvas computerUI;
         [SerializeField] playerTaskManager taskManager;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        [SerializeField] private int gameClickCounter; 
+        [SerializeField] private int gameClickCounter;
+        [SerializeField] WalletUI wallet;
+        InputAction cancelAction;
         void Awake()
         {
             mailPanel.interactable = false;
+            cancelAction = InputSystem.actions.FindAction("Cancel");
         }
         void Update()
         {
-            if (Input.GetButton("Cancel"))
+            if (cancelAction.IsPressed())
             {
                 computerUI.enabled = false;
             }
         }
         public void EmailBtn()
         {
-            string beastMail = "Hello, This is mr baest. Thanks you for watchig all of my vidos. You aer bigest fan, i rewrad you with free $BeastCoins$. Replay with yor credit card detaels, teh dtae of your berfth, the naem of yiur fisrt pet, an ur favriote clolr";
+            string beastMail = "Hello, This is mr baest. Thanks you for watchig all of my vidos. You aer bigest fan, i rewrad you with free $BeastCoins$. Replay with yor credit card detaels, ful name, teh dtae of your berfth, the naem of yiur fisrt pet, an ur favriote clolr";
             mailPanel.interactable = true;
             beast.alpha = 1;
             textBox.text = beastMail;
@@ -48,6 +51,10 @@ namespace Environment
             beast.alpha = 0;
             string printThis = computer.AddTask();
             textBox.text = "Current Task: " + printThis;
+            if (computer.listOfDoodoo.Count == 0)
+            {
+                taskBtn.interactable = false;
+            }
         }
         public void GamesBtn()
         {
@@ -72,7 +79,7 @@ namespace Environment
             }
             else if (gameClickCounter >= 10)
             {
-                textBox.text = "HR has been notified on your work ethics, if you proceed with this behavior we will take action regarding your employment.";                
+                textBox.text = "HR has been notified on your low work morale, if you proceed with this behavior we will take action regarding your employment.";                
             }
             
             
@@ -85,6 +92,8 @@ namespace Environment
             beast.alpha = 0;
             Task currentTask = taskManager.TaskExecutor();
             currentTask.Execute();
+            wallet.AddCoins(50000);
+            
         }
         public void ExitBtn()
         {

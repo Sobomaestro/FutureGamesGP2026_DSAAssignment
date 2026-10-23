@@ -6,9 +6,11 @@ namespace Environment.Tasks{
 public class EmailTask : Task
 {
   [SerializeField] private string taskDescription = "Keep up with your correspondences";
+  [SerializeField] ScriptableObject beastCoin;
+        public int beastAmount = 50000;
      public override void Execute()
      {
-
+        //beastCoin.AddCoins(beastAmount);
      }
 
 
