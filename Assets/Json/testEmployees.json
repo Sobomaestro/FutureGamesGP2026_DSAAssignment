@@ -15,6 +15,13 @@
       "lastExitFromEngineRoom": "2234-08-09T22:13:22"
     },
     {
+      "name": "Fuckboi Honcho",
+      "employeeId": 666,
+      "hasEngineRoomClearance": false,
+      "lastEntranceInEngineRoom": "2234-08-08T22:13:47",
+      "lastExitFromEngineRoom": "2234-07-09T22:13:22"
+    },
+    {
       "name": "Jane  Sanchez",
       "employeeId": 431,
       "hasEngineRoomClearance": true,

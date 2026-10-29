@@ -8,63 +8,106 @@ using Unity.VisualScripting;
 public class SortingScript : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI generatedNumber;
-    TextMeshProUGUI[] numberBox = new TextMeshProUGUI[20];
+
     [SerializeField] Transform parent;
-    [SerializeField] VerticalLayoutGroup Contentbox;
-    [SerializeField] List<TextMeshProUGUI> boxList = new List<TextMeshProUGUI>();
+    [SerializeField] VerticalLayoutGroup Contentbox;    
     [SerializeField] UnityEngine.UI.Button sortBtn;
     [SerializeField] UnityEngine.UI.Button genBtn;
     bool generated = false;
-    int[] randomNumberArray;
-    
-    void Awake()
-    {
+    int[] randomNumberArray = new int[100];
+    TextMeshProUGUI[] numberBox = new TextMeshProUGUI[100];
+
+    public void Awake()
+    {        
         
     }
 
     public void RandomNumberArrayer()
     {
-        int[] randomNumberArray = new int[20];
-        for (int i = 0; i < randomNumberArray.Length; i++)
-            {              
-                int randomNumber = Random.Range(0, 100);
-                randomNumberArray[i] = randomNumber;
+        
+        for (int i = 0; i < 99; i++)
+        {
+            int randomNumber = Random.Range(0, 100);
+            randomNumberArray[i] = randomNumber;
             if (!generated)
             {
                 numberBox[i] = Instantiate(generatedNumber, transform.position, Quaternion.identity, parent);
                 numberBox[i].name = "numberBox" + i;
-                
             }
-                numberBox[i].text = randomNumber.ToString();
-                //boxList.Add(numberBox[i]);
-            }
+            numberBox[i].text = randomNumberArray[i].ToString();
+        }
         generated = true;
-        //genBtn.interactable = false;
+        Debug.Log(randomNumberArray.Length);
     }
 
     public void ButtonClick()
     {
-
-    }
-
-    public void ArraySorter()
-    {
-        {            
-            for (int i = 0; i < numberBox.Length -1; i++)
-            {
-                for (int j = i + 1; j < numberBox.Length; j++)
-                {
-                    if (int.Parse(numberBox[i].text) > int.Parse(numberBox[j].text))
-                    {
-                        int temp = int.Parse(numberBox[j].text);
-                        numberBox[j].text = numberBox[i].text;
-                        numberBox[i].text = temp.ToString();
-                        numberBox[i].text = temp.ToString();
-                    }
-                }                
-            }
+        DecapiSort(randomNumberArray);
+        for (int i = 0; i < randomNumberArray.Length - 1;i++)
+        {
+            numberBox[i].text = randomNumberArray[i].ToString();
         }
     }
 
+    public void DecapiSort(int[] array)
+    {
+        int length = array.Length;
+        int middle = length / 2;
+        if (length <= 1) { return; }
+        int[] leftArray = new int[middle];
+        int[] rightArray = new int[length - middle];
 
+        int i = 0; //left array
+        int j = 0; //right array
+
+        for(; i < length; i++)
+        {
+            if (i < middle)
+            {
+                leftArray[i] = array[i];
+            }
+            else
+            {
+                rightArray[j] = array[i];
+                j++;
+            }
+        }
+        DecapiSort(leftArray);
+        DecapiSort(rightArray);
+        FrankenSort(leftArray, rightArray, array);
+    }
+    public void FrankenSort(int[] leftArray, int[] rightArray, int[] array)
+    {
+        int middle = leftArray.Length + (rightArray.Length - leftArray.Length) / 2;
+        int leftSize = array.Length / 2;
+        int rightSize = array.Length - leftSize;
+        int i = 0, l = 0, r = 0;
+
+        while (l < leftSize && r < rightSize)
+        {
+            if (leftArray[l] < rightArray[r])
+            {
+                array[i] = leftArray[l];
+                i++; l++;               
+            }
+            else
+            {
+                array[i] = rightArray[r];
+                i++; r++;
+            }
+        }
+        while (l < leftSize)
+        { 
+            array[i] = leftArray[l];
+            i++; l++;
+        }
+        while (r < rightSize)
+        {
+            array[i] = rightArray[r];
+            i++; r++;
+        }
+    }
+    
 }
+
+

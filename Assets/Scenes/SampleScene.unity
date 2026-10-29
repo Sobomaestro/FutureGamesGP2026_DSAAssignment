@@ -2578,7 +2578,6 @@ MonoBehaviour:
   generatedNumber: {fileID: 0}
   parent: {fileID: 0}
   Contentbox: {fileID: 0}
-  boxList: []
   sortBtn: {fileID: 0}
   genBtn: {fileID: 0}
 --- !u!1 &758628975 stripped
@@ -8277,7 +8276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 23521.621}
+  m_AnchoredPosition: {x: 0, y: 200401.3}
   m_SizeDelta: {x: 221.7, y: 511.5}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2117357148055262534
@@ -8798,19 +8797,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1216793979275992568, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1216793979275992568, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1216793979275992568, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056720995186324996, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2087
       objectReference: {fileID: 0}
     - target: {fileID: 2056720995186324996, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 328545.8
+      value: 136099.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314076724057606334, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2455377833095312092, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8862,6 +8869,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6424147602167697575, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769917114032119402, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_Size
+      value: 0.225
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769917114032119402, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769917114032119402, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_Direction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189087692482156847, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397346542993916424, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_VerticalScrollbarVisibility
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7774035297184085504, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
@@ -8956,6 +8983,34 @@ PrefabInstance:
       propertyPath: taskManager
       value: 
       objectReference: {fileID: 8404672306686481746}
+    - target: {fileID: 8240988118845607197, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240988118845607197, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_ChildScaleHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240988118845607197, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_ChildControlHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240988118845607197, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_ReverseArrangement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240988118845607197, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240988118845607197, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131500657030619496, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
+      propertyPath: randomNumberArray.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9943,7 +9998,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7774035297728380919}
         m_TargetAssemblyTypeName: JsonUI, Assembly-CSharp
-        m_MethodName: SortButton
+        m_MethodName: SortButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

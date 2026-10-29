@@ -12,19 +12,18 @@ public class Employees
     public string lastEntranceInEngineRoom;
     public string lastExitFromEngineRoom;
 
-    public void EmployeeDefault() {
+    public Employees() {
         this.name = null;
         this.employeeId = 0;
         this.hasEngineRoomClearance = false;
         this.lastEntranceInEngineRoom = null;
         this.lastExitFromEngineRoom = null;
-
     }
 
 
 }
 [Serializable]
 public class EmployeeList {
-    public List<Employees> employees;
+    public List<Employees> employees = new List<Employees>();
     //public Employees[] employees;
 }

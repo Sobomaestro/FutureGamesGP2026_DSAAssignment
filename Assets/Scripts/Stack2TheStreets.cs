@@ -10,17 +10,14 @@ public class Stack2TheStreets<T> {
     public Stack2TheStreets() {
         this.stackData = new List<T>();
     }
-
     public void PushIt(T newItem) {
         stackData.Insert(stackData.Count, newItem);
     }
-
     public T PopIt() {
         T index0 = stackData[stackData.Count - 1];
         stackData.RemoveAt(stackData.Count - 1);
         return index0;
     }
-
     public T Peekaboo() {
         if (stackData.Count > 0)
         {
@@ -34,7 +31,6 @@ public class Stack2TheStreets<T> {
         stackData.Clear();
         Debug.Log("swept the streets with their corpses");
     }
-
 }
 //public class Stack2TheStreets<T> {
 //    Custom List<Custom>(2).isEnable = true;
