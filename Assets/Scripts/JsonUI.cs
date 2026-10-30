@@ -20,6 +20,8 @@ public class JsonUI : MonoBehaviour
     [SerializeField] Canvas jsonUI;
     public InteractableTasks inter;
     public SortTaskScript employeeSorter;
+    [SerializeField] Listcarrier listCarrier;
+    
     string[] name = new string[5];
     int[] employeeID = new int[5];
     bool[] hasEngineRoomClearance = new bool[5];
@@ -49,7 +51,7 @@ public class JsonUI : MonoBehaviour
         {
             taskManager.TaskExecutor();
             incomingTask.Execute();
-            
+            listCarrier.ListSortSend();
         }
     }
     public void ExitButton()
@@ -61,19 +63,15 @@ public class JsonUI : MonoBehaviour
     {
         myEmployeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
         var dateTime = DateTime.Parse(myEmployeeList.employees[0].lastEntranceInEngineRoom);
-        //for (int i = 0; i < myEmployeeList.employees.Count; i++)
-        //{
-        //    lastExitDateTime[i] = DateTime.Parse(myEmployeeList.employees[i].lastEntranceInEngineRoom);
-        //    Debug.Log(lastExitDateTime[i]);
-        //}
-        PrintJson(myEmployeeList);
+        listCarrier.ListIntake(myEmployeeList);
+        //PrintJson(myEmployeeList);
     }
 
     public void PrintJson(EmployeeList employeeList)
     {
         Debug.Log("Printing!");
         jsonTextbox.text = " ";
-        foreach (Employees employees in myEmployeeList.employees)
+        foreach (Employees employees in employeeList.employees)
         {
             jsonTextbox.text += employees.name.ToString() + ", EmployeeID: " + employees.employeeId.ToString() + "\r\n";
             jsonTextbox.text += "Has engine room clearance? " + employees.hasEngineRoomClearance.ToString() + "\r\n";
@@ -83,22 +81,23 @@ public class JsonUI : MonoBehaviour
         }
     }
 
-    public void SortButtonClick()
-    {
-        jsonTextbox.text = string.Empty;
-        EmployeeList employeeList = new EmployeeList();
-        employeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
-        EmployeeList sortedList = Divider(myEmployeeList);
-        PrintJson(sortedList);
-    }
+    //public void SortButtonClick()
+    //{
+    //    jsonTextbox.text = string.Empty;        
+    //    listCarrier.ListSortSend();
+    //    //EmployeeList employeeList = new EmployeeList();
+    //    //employeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
+    //    //EmployeeList sortedList = Divider(myEmployeeList);
+    //    //PrintJson(sortedList);
+    //}
 
-    public void TaskActivated()
-    {
-        EmployeeList employeeList = new EmployeeList();
-        employeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
-        EmployeeList sortedList = Divider(employeeList);
-        PrintJson(sortedList);
-    }
+    //public void TaskActivated()
+    //{
+    //    EmployeeList employeeList = new EmployeeList();
+    //    employeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
+    //    EmployeeList sortedList = Divider(employeeList);
+    //    PrintJson(sortedList);
+    //}
 
     public EmployeeList Divider(EmployeeList myEmployeeList)
     {

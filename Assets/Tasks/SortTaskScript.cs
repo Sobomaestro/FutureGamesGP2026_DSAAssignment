@@ -13,8 +13,9 @@ namespace Environment.Tasks
         [SerializeField] public EmployeeList myEmployeeList;
         public override void Execute()
         {
-            JsonUI jsonUI = GameObject.FindAnyObjectByType<JsonUI>();
-            jsonUI.TaskActivated();
+            Debug.Log("Executing sorting task");
+            //JsonUI jsonUI = GameObject.FindAnyObjectByType<JsonUI>();
+            //jsonUI.TaskActivated();
         }
         public EmployeeList Divider(EmployeeList myEmployeeList)
         {
