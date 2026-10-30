@@ -167,7 +167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -197,6 +197,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5017971254852617305, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.2793178
+      objectReference: {fileID: 0}
+    - target: {fileID: -5017971254852617305, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 16.587877
+      objectReference: {fileID: 0}
+    - target: {fileID: -5017971254852617305, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 38.4449
+      objectReference: {fileID: 0}
+    - target: {fileID: 445712794880070669, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -5.4101715
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
       propertyPath: m_Name
       value: Player
@@ -204,6 +220,30 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1492312403021943278, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 37.528793
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812433027226884373, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 3.5444245
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604367576434143486, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -37.528812
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891244130364874969, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.27931875
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891244130364874969, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 16.587877
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891244130364874969, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -38.444904
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -215,6 +255,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3840739055021509276}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3452926660073174632}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6575c100ec0c84a42bb2d2b342c8c1c1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 499941628890226282}
@@ -250,7 +293,30 @@ MonoBehaviour:
   animator: {fileID: 2001879518530198029}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  rb: {fileID: 7142728723388556604}
   movementSpeed: 10
+  interactionRange: 2
+--- !u!114 &3452926660073174632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275067082953684085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6653b012dbe312e47a96c8d4811a6bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Environment.Tasks.playerTaskManager
+  taskText: {fileID: 0}
+  computer: {fileID: 0}
+  jsonComputer: {fileID: 0}
+  employeeTask: {fileID: 11400000, guid: 76bd68e8a43987445bf7e5f337040fac, type: 2}
+  light: {fileID: 0}
+  spotLight: {fileID: 0}
+  emailButton: {fileID: 0}
+  taskButton: {fileID: 0}
+  employeeList: []
 --- !u!136 &499941628890226282
 CapsuleCollider:
   m_ObjectHideFlags: 0

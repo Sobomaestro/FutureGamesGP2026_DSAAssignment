@@ -2262,11 +2262,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c86a618c3e407349bbdf7596b90e116, type: 3}
   m_PrefabInstance: {fileID: 699703659}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &703929184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2275067082953684085, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-  m_PrefabInstance: {fileID: 8404672306686481740}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &715787370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2ea24fb8ab1d15d4d806780ee4ec59fb, type: 3}
@@ -4659,7 +4654,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4716,7 +4711,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 223.40814, z: -275.16382, w: -697.31775}
+  m_margin: {x: 0, y: 14.361633, z: -275.16382, w: -231.34735}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7361,6 +7356,7 @@ MonoBehaviour:
   debugTasks: {fileID: 0}
   taskManager: {fileID: 8404672306686481746}
   interactaTasks: {fileID: 0}
+  secretTasks: {fileID: 0}
   listOfDoodoo: []
   computerUI: {fileID: 0}
   emailButton: {fileID: 0}
@@ -8276,7 +8272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 200401.3}
+  m_AnchoredPosition: {x: 0, y: 151723.03}
   m_SizeDelta: {x: 221.7, y: 511.5}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2117357148055262534
@@ -8813,7 +8809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2056720995186324996, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 136099.42
+      value: 783893.25
       objectReference: {fileID: 0}
     - target: {fileID: 2314076724057606334, guid: a1fcbd6d895d5a94c8ba0ff64efd17eb, type: 3}
       propertyPath: m_Pivot.y
@@ -9718,7 +9714,7 @@ PrefabInstance:
       objectReference: {fileID: 8404672306686481746}
     - target: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
       propertyPath: listOfDoodoo.Array.size
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
       propertyPath: listOfBullshit.Array.size
@@ -9776,6 +9772,10 @@ PrefabInstance:
       propertyPath: 'listOfDoodoo.Array.data[11]'
       value: 
       objectReference: {fileID: 11400000, guid: 3b59f5a424e93de4e8dabede86a5b666, type: 2}
+    - target: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
+      propertyPath: 'listOfDoodoo.Array.data[12]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d51965a034b4a84297449b3cf647db0, type: 2}
     - target: {fileID: 1261029998129311158, guid: 7d560e7070230eb46aeb1576bedf22f3, type: 3}
       propertyPath: 'listOfBullshit.Array.data[0]'
       value: 
@@ -10147,6 +10147,7 @@ MonoBehaviour:
   jsonTextbox: {fileID: 1281898157}
   jsonUI: {fileID: 2736590168896410713}
   inter: {fileID: 11400000, guid: 76bd68e8a43987445bf7e5f337040fac, type: 2}
+  employeeSorter: {fileID: 11400000, guid: e70d4744b331a6d45ad7b12685b4720f, type: 2}
 --- !u!224 &7774864670959066967
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10205,9 +10206,9 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
@@ -10222,14 +10223,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 569145280396925130, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 37.528793
-      objectReference: {fileID: 0}
-    - target: {fileID: 753454193878306865, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 3.5444245
-      objectReference: {fileID: 0}
     - target: {fileID: 1502365927328657103, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10270,84 +10263,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1548321039824592169, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -5.4101715
-      objectReference: {fileID: 0}
     - target: {fileID: 2275067082953684085, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2958677068730937987, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.2793178
-      objectReference: {fileID: 0}
-    - target: {fileID: 2958677068730937987, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 16.587877
-      objectReference: {fileID: 0}
-    - target: {fileID: 2958677068730937987, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 38.4449
-      objectReference: {fileID: 0}
-    - target: {fileID: 3840739055021509276, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: rb
+    - target: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+      propertyPath: light
       value: 
-      objectReference: {fileID: 8404672306686481748}
-    - target: {fileID: 3840739055021509276, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: interactionRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7509694969456798205, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.27931875
-      objectReference: {fileID: 0}
-    - target: {fileID: 7509694969456798205, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 16.587877
-      objectReference: {fileID: 0}
-    - target: {fileID: 7509694969456798205, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -38.444904
-      objectReference: {fileID: 0}
-    - target: {fileID: 8852920875980470746, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -37.528812
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 410087040}
+    - target: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+      propertyPath: computer
+      value: 
+      objectReference: {fileID: 1935928924}
+    - target: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+      propertyPath: sortTask
+      value: 
+      objectReference: {fileID: 11400000, guid: e70d4744b331a6d45ad7b12685b4720f, type: 2}
+    - target: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+      propertyPath: taskText
+      value: 
+      objectReference: {fileID: 2089864203}
+    - target: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+      propertyPath: spotLight
+      value: 
+      objectReference: {fileID: 887563673}
+    - target: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+      propertyPath: taskButton
+      value: 
+      objectReference: {fileID: 347175227}
+    - target: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+      propertyPath: emailButton
+      value: 
+      objectReference: {fileID: 1601773581}
+    - target: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+      propertyPath: jsonComputer
+      value: 
+      objectReference: {fileID: 2053960122}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2275067082953684085, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 8404672306686481746}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
---- !u!114 &8404672306686481746
+--- !u!114 &8404672306686481746 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+  m_PrefabInstance: {fileID: 8404672306686481740}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703929184}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6653b012dbe312e47a96c8d4811a6bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Environment.Tasks.playerTaskManager
-  taskText: {fileID: 2089864203}
-  computer: {fileID: 1935928924}
-  jsonComputer: {fileID: 2053960122}
-  employeeTask: {fileID: 11400000, guid: 76bd68e8a43987445bf7e5f337040fac, type: 2}
-  light: {fileID: 410087040}
-  spotLight: {fileID: 887563673}
-  emailButton: {fileID: 1601773581}
-  taskButton: {fileID: 347175227}
-  employeeList: []
---- !u!54 &8404672306686481748 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 7142728723388556604, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
-  m_PrefabInstance: {fileID: 8404672306686481740}
-  m_PrefabAsset: {fileID: 0}
 --- !u!222 &8876188630489616901
 CanvasRenderer:
   m_ObjectHideFlags: 0

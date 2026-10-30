@@ -25,8 +25,7 @@ public class JsonPuter : Computer, IInteractable
     public ScriptableObject scriptableObject;
     
     public override void OnInteract() {
-        jsonUI.enabled = true;
-        
+        jsonUI.enabled = true;        
     }
 
     //public void ExecuteJason()

@@ -14,6 +14,7 @@ namespace Environment
         [SerializeField] public DebugPrintTask debugTasks;
         [SerializeField] public playerTaskManager taskManager;
         [SerializeField] public InteractableTasks interactaTasks;
+        [SerializeField] public SecretTask secretTasks;
         [SerializeField] public List<Task> listOfDoodoo = new List<Task>();
         [SerializeField] Canvas computerUI;
         [SerializeField] Button emailButton;

@@ -17,6 +17,7 @@ namespace Environment.Tasks
         public Computer computer;
         public JsonPuter jsonComputer;
         public ScriptableObject employeeTask;
+        public ScriptableObject sortTask;
         [SerializeField] Light light;
         [SerializeField] Light spotLight;
         [SerializeField] Button emailButton;

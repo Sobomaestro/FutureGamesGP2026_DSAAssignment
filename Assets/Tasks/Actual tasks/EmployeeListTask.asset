@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Environment.Tasks.InteractableTasks
   taskDescription: Sort the list of employees to find the suspect, and save the world.
   jsonFile: {fileID: 4900000, guid: f85ee0ac905ddb743a2030d7cae632be, type: 3}
-  jsonPuter: {fileID: 0}
+  taskManager: {fileID: 3452926660073174632, guid: 613ff64883d4f164fa524c12ce6f8bec, type: 3}
+  sortTask: {fileID: 11400000, guid: e70d4744b331a6d45ad7b12685b4720f, type: 2}

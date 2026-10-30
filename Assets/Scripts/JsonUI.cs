@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 public class JsonUI : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class JsonUI : MonoBehaviour
     [SerializeField] DateTime[] lastExitDateTime = new DateTime[3];
     [SerializeField] Canvas jsonUI;
     public InteractableTasks inter;
+    public SortTaskScript employeeSorter;
     string[] name = new string[5];
     int[] employeeID = new int[5];
     bool[] hasEngineRoomClearance = new bool[5];
@@ -35,11 +37,20 @@ public class JsonUI : MonoBehaviour
             taskManager.TaskExecutor();
             incomingTask.Execute();
             ExecuteJason();
+            taskManager.TaskAdder(employeeSorter);
         }
+        
     }
     public void SortButton()
     {
-
+        Task incomingTask = taskManager.TaskPeeker();
+        Debug.Log(incomingTask);
+        if (incomingTask is SortTaskScript employeeSorter)
+        {
+            taskManager.TaskExecutor();
+            incomingTask.Execute();
+            
+        }
     }
     public void ExitButton()
     {
@@ -74,13 +85,19 @@ public class JsonUI : MonoBehaviour
 
     public void SortButtonClick()
     {
-        
+        jsonTextbox.text = string.Empty;
         EmployeeList employeeList = new EmployeeList();
         employeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
-        myEmployeeList = Divider(myEmployeeList);
-        Debug.Log("hello");
-        PrintJson(myEmployeeList);
-        Debug.Log("Dude");
+        EmployeeList sortedList = Divider(myEmployeeList);
+        PrintJson(sortedList);
+    }
+
+    public void TaskActivated()
+    {
+        EmployeeList employeeList = new EmployeeList();
+        employeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
+        EmployeeList sortedList = Divider(employeeList);
+        PrintJson(sortedList);
     }
 
     public EmployeeList Divider(EmployeeList myEmployeeList)
@@ -92,30 +109,12 @@ public class JsonUI : MonoBehaviour
         EmployeeList rightList = new EmployeeList();
         leftList.employees = new();
         rightList.employees = new();
-
         int middle = length / 2;
-
-        Debug.Log(rightList.employees.Count);
-        Debug.Log(leftList.employees.Count);
-        //Employeeees leftList = new EmployeeList();
-
 
         int i = 0; //left list
         int j = 0; //right list
-                   //foreach (Employees employee in myEmployeeList.employees)
-                   //{
-                   //    if (i < middle)
-                   //    {
-                   //        leftList.employees.Add(employee); i++;
-                   //    }
-                   //    else
-                   //    {
-                   //        rightList.employees.Add(employee); i++;
-                   //    }
-                   // }
             for (; i < length; i++)
             {
-                Debug.Log("i är: " + i);
                 if (i < middle)
                 {
                     leftList.employees.Add(myEmployeeList.employees[i]);
@@ -129,19 +128,23 @@ public class JsonUI : MonoBehaviour
 
             Divider(leftList);
             Divider(rightList);
-            FrankenMerger(rightList, leftList, myEmployeeList);
-            return myEmployeeList;
+            EmployeeList sortedList = FrankenMerger(rightList, leftList, myEmployeeList);
+            return sortedList;
     }
-    public void FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList myEmployeeList)
+    public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList myEmployeeList)
     {
+        Debug.Log("kör frankenmerger");
         int leftSize = leftList.employees.Count;
         int rightSize = rightList.employees.Count;
         int i = 0, l = 0, r = 0;
 
         while (l < leftSize && r < rightSize)
         {
-            if (DateTime.Parse(rightList.employees[l].lastEntranceInEngineRoom) < DateTime.Parse(leftList.employees[r].lastEntranceInEngineRoom))
+            DateTime leftSide = DateTime.Parse(leftList.employees[l].lastExitFromEngineRoom);
+            DateTime rightSide = DateTime.Parse(rightList.employees[r].lastExitFromEngineRoom);
+            if (leftSide.CompareTo(rightSide) < 0)
             {
+                Debug.Log("compared "+DateTime.Parse(rightList.employees[l].lastEntranceInEngineRoom));
                 myEmployeeList.employees[i] = rightList.employees[r];
                 i++; r++;
             }
@@ -161,5 +164,11 @@ public class JsonUI : MonoBehaviour
             myEmployeeList.employees[i] = rightList.employees[r];
             i++; r++;
         }
+        //foreach (Employees employee in  myEmployeeList.employees)
+        //{
+        //    Debug.Log(employee.name + " " + employee.lastEntranceInEngineRoom);
+        //}
+        return myEmployeeList;
     }
+    
 }

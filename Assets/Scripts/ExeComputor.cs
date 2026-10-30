@@ -27,7 +27,13 @@ public class ExeComputor : Computer, IInteractable
                 taskManager.TaskExecutor();
                 incomingTask.Execute();
                 debugTasks.Execute();
-            }         
+            }
+            if (incomingTask is SecretTask verySecret)
+            {
+                taskManager.TaskExecutor();
+                incomingTask.Execute();
+                
+            }
             else if (incomingTask is InteractableTasks interactTask)
             { Debug.Log("This task needs a stronger workstation than this..."); }
         }
