@@ -8,17 +8,18 @@ namespace Environment.Tasks
     public class Listcarrier : ScriptableObject
     {
         [SerializeField] EmployeeList employeeListSO = new EmployeeList();
+        
         [SerializeField] SortTaskScript sortTask;
         JsonUI jsonUI;
 
-        public void ListIntake(EmployeeList incomingList)
+
+        public void ListIntake(EmployeeList incomingList)            
         {
-            int i = 0;
-            employeeListSO.employees = new();
-            foreach (Employees employee in incomingList.employees)
+            employeeListSO.Employees = new();
+            for (int i = 0; i < incomingList.Employees.Count; i++)
             {
-                employeeListSO.employees.Add(employee);
-            }
+                employeeListSO.Employees.Add(incomingList.Employees[i]);
+            }            
             jsonUI = FindAnyObjectByType<JsonUI>();
             jsonUI.PrintJson(employeeListSO);
         }

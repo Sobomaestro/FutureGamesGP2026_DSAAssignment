@@ -8,7 +8,7 @@ namespace Environment.Tasks
 
     public class SortTaskScript : Task
     {
-        [SerializeField] private string taskDescription = "Sort the list of employees to find the suspect, and save the world.";
+        [SerializeField] private string taskDescription = "Sort the list of Employees to find the suspect, and save the world.";
         [SerializeField] public playerTaskManager taskManager;
         [SerializeField] public EmployeeList myEmployeeList;
         public override void Execute()
@@ -20,12 +20,12 @@ namespace Environment.Tasks
         public EmployeeList Divider(EmployeeList myEmployeeList)
         {
 
-            int length = myEmployeeList.employees.Count;
+            int length = myEmployeeList.Employees.Count;
             if (length <= 1) { return myEmployeeList; }
             EmployeeList leftList = new();
             EmployeeList rightList = new EmployeeList();
-            leftList.employees = new();
-            rightList.employees = new();
+            leftList.Employees = new();
+            rightList.Employees = new();
             int middle = length / 2;
 
             int i = 0; //left list
@@ -34,11 +34,11 @@ namespace Environment.Tasks
             {
                 if (i < middle)
                 {
-                    leftList.employees.Add(myEmployeeList.employees[i]);
+                    leftList.Employees.Add(myEmployeeList.Employees[i]);
                 }
                 else
                 {
-                    rightList.employees.Add(myEmployeeList.employees[i]);
+                    rightList.Employees.Add(myEmployeeList.Employees[i]);
                     j++;
                 }
             }
@@ -51,39 +51,39 @@ namespace Environment.Tasks
         public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList myEmployeeList)
         {
             Debug.Log("kör frankenmerger");
-            int leftSize = leftList.employees.Count;
-            int rightSize = rightList.employees.Count;
+            int leftSize = leftList.Employees.Count;
+            int rightSize = rightList.Employees.Count;
             int i = 0, l = 0, r = 0;
 
             while (l < leftSize && r < rightSize)
             {
-                DateTime leftSide = DateTime.Parse(leftList.employees[l].lastExitFromEngineRoom);
-                DateTime rightSide = DateTime.Parse(rightList.employees[r].lastExitFromEngineRoom);
+                DateTime leftSide = DateTime.Parse(leftList.Employees[l].LastExitFromEngineRoom);
+                DateTime rightSide = DateTime.Parse(rightList.Employees[r].LastExitFromEngineRoom);
                 if (leftSide.CompareTo(rightSide) < 0)
                 {
-                    Debug.Log("compared " + DateTime.Parse(rightList.employees[l].lastEntranceInEngineRoom));
-                    myEmployeeList.employees[i] = rightList.employees[r];
+                    Debug.Log("compared " + DateTime.Parse(rightList.Employees[l].LastEntranceInEngineRoom));
+                    myEmployeeList.Employees[i] = rightList.Employees[r];
                     i++; r++;
                 }
                 else
                 {
-                    myEmployeeList.employees[i] = leftList.employees[l];
+                    myEmployeeList.Employees[i] = leftList.Employees[l];
                     i++; l++;
                 }
             }
             while (l < leftSize)
             {
-                myEmployeeList.employees[i] = leftList.employees[l];
+                myEmployeeList.Employees[i] = leftList.Employees[l];
                 i++; l++;
             }
             while (r < rightSize)
             {
-                myEmployeeList.employees[i] = rightList.employees[r];
+                myEmployeeList.Employees[i] = rightList.Employees[r];
                 i++; r++;
             }
-            //foreach (Employees employee in  myEmployeeList.employees)
+            //foreach (Employees employee in  myEmployeeList.Employees)
             //{
-            //    Debug.Log(employee.name + " " + employee.lastEntranceInEngineRoom);
+            //    Debug.Log(employee.name + " " + employee.LastEntranceInEngineRoom);
             //}
             return myEmployeeList;
         }

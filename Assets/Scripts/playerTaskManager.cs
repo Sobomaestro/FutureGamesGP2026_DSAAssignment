@@ -46,6 +46,7 @@ namespace Environment.Tasks
         private void Awake()
         {
             age = new();
+            baseTemp = light.colorTemperature;
         }
         void Start()
         {

@@ -21,14 +21,11 @@ public class JsonUI : MonoBehaviour
     public InteractableTasks inter;
     public SortTaskScript employeeSorter;
     [SerializeField] Listcarrier listCarrier;
-    
-    string[] name = new string[5];
-    int[] employeeID = new int[5];
-    bool[] hasEngineRoomClearance = new bool[5];
-    string[] lastEntranceInEngineRoom = new string[5];
-    string[] lastExitFromEngineRoom = new string[5];
-    Employees[] employeeArray = new Employees[5];
 
+    void Awake()
+    {
+        myEmployeeList.Employees = new();
+    }
 
     public void LoadButton()
     {
@@ -62,7 +59,8 @@ public class JsonUI : MonoBehaviour
     public void ExecuteJason()
     {
         myEmployeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
-        var dateTime = DateTime.Parse(myEmployeeList.employees[0].lastEntranceInEngineRoom);
+        //var dateTime = DateTime.Parse(myEmployeeList.employees[0].lastEntranceInEngineRoom);
+        Debug.Log("the length of the list going out is: " + myEmployeeList.Employees.Count);
         listCarrier.ListIntake(myEmployeeList);
         //PrintJson(myEmployeeList);
     }
@@ -71,12 +69,12 @@ public class JsonUI : MonoBehaviour
     {
         Debug.Log("Printing!");
         jsonTextbox.text = " ";
-        foreach (Employees employees in employeeList.employees)
+        foreach (Employees employees in employeeList.Employees)
         {
-            jsonTextbox.text += employees.name.ToString() + ", EmployeeID: " + employees.employeeId.ToString() + "\r\n";
-            jsonTextbox.text += "Has engine room clearance? " + employees.hasEngineRoomClearance.ToString() + "\r\n";
-            jsonTextbox.text += "Last entrance in engine room: " + employees.lastEntranceInEngineRoom.ToString() + "\r\n";
-            jsonTextbox.text += "Last exit from engine room: " + employees.lastExitFromEngineRoom.ToString() + "\r\n";
+            jsonTextbox.text += employees.Name.ToString() + ", EmployeeID: " + employees.EmployeeId.ToString() + "\r\n";
+            jsonTextbox.text += "Has engine room clearance? " + employees.HasEngineRoomClearance.ToString() + "\r\n";
+            jsonTextbox.text += "Last entrance in engine room: " + employees.LastEntranceInEngineRoom.ToString() + "\r\n";
+            jsonTextbox.text += "Last exit from engine room: " + employees.LastExitFromEngineRoom.ToString() + "\r\n";
             jsonTextbox.text += "____________________\r\n";
         }
     }
@@ -102,12 +100,12 @@ public class JsonUI : MonoBehaviour
     public EmployeeList Divider(EmployeeList myEmployeeList)
     {
 
-        int length = myEmployeeList.employees.Count;
+        int length = myEmployeeList.Employees.Count;
         if (length <= 1) { return myEmployeeList; }
         EmployeeList leftList = new();
         EmployeeList rightList = new EmployeeList();
-        leftList.employees = new();
-        rightList.employees = new();
+        leftList.Employees = new();
+        rightList.Employees = new();
         int middle = length / 2;
 
         int i = 0; //left list
@@ -116,11 +114,11 @@ public class JsonUI : MonoBehaviour
             {
                 if (i < middle)
                 {
-                    leftList.employees.Add(myEmployeeList.employees[i]);
+                    leftList.Employees.Add(myEmployeeList.Employees[i]);
                 }
                 else
                 {
-                    rightList.employees.Add(myEmployeeList.employees[i]);
+                    rightList.Employees.Add(myEmployeeList.Employees[i]);
                     j++;
                 }
             }
@@ -133,34 +131,34 @@ public class JsonUI : MonoBehaviour
     public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList myEmployeeList)
     {
         Debug.Log("kör frankenmerger");
-        int leftSize = leftList.employees.Count;
-        int rightSize = rightList.employees.Count;
+        int leftSize = leftList.Employees.Count;
+        int rightSize = rightList.Employees.Count;
         int i = 0, l = 0, r = 0;
 
         while (l < leftSize && r < rightSize)
         {
-            DateTime leftSide = DateTime.Parse(leftList.employees[l].lastExitFromEngineRoom);
-            DateTime rightSide = DateTime.Parse(rightList.employees[r].lastExitFromEngineRoom);
+            DateTime leftSide = DateTime.Parse(leftList.Employees[l].LastExitFromEngineRoom);
+            DateTime rightSide = DateTime.Parse(rightList.Employees[r].LastExitFromEngineRoom);
             if (leftSide.CompareTo(rightSide) < 0)
             {
-                Debug.Log("compared "+DateTime.Parse(rightList.employees[l].lastEntranceInEngineRoom));
-                myEmployeeList.employees[i] = rightList.employees[r];
+                Debug.Log("compared "+DateTime.Parse(rightList.Employees[l].LastEntranceInEngineRoom));
+                myEmployeeList.Employees[i] = rightList.Employees[r];
                 i++; r++;
             }
             else
             {
-                myEmployeeList.employees[i] = leftList.employees[l];
+                myEmployeeList.Employees[i] = leftList.Employees[l];
                 i++; l++;
             }
         }
         while (l < leftSize)
         {
-            myEmployeeList.employees[i] = leftList.employees[l];
+            myEmployeeList.Employees[i] = leftList.Employees[l];
             i++; l++;
         }
         while (r < rightSize)
         {
-            myEmployeeList.employees[i] = rightList.employees[r];
+            myEmployeeList.Employees[i] = rightList.Employees[r];
             i++; r++;
         }
         //foreach (Employees employee in  myEmployeeList.employees)
