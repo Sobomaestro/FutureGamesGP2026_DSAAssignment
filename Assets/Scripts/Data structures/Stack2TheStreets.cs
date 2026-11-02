@@ -14,7 +14,7 @@ public class Stack2TheStreets<T> {
         stackData.Insert(stackData.Count, newItem);
     }
     public T PopIt() {
-        T index0 = stackData[stackData.Count - 1];
+        T index0 = stackData[stackData.Count - 1];        
         stackData.RemoveAt(stackData.Count - 1);
         return index0;
     }

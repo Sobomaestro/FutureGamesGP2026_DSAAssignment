@@ -16,7 +16,6 @@ public class JsonUI : MonoBehaviour
     [SerializeField] Button sortButton;
     [SerializeField] Button exitButton;
     [SerializeField] TextMeshProUGUI jsonTextbox;
-    [SerializeField] DateTime[] lastExitDateTime = new DateTime[3];
     [SerializeField] Canvas jsonUI;
     public InteractableTasks inter;
     public SortTaskScript employeeSorter;
@@ -34,7 +33,6 @@ public class JsonUI : MonoBehaviour
         if (incomingTask is InteractableTasks interactask)
         {
             taskManager.TaskExecutor();
-            incomingTask.Execute();
             ExecuteJason();
             taskManager.TaskAdder(employeeSorter);
         }
@@ -47,8 +45,7 @@ public class JsonUI : MonoBehaviour
         if (incomingTask is SortTaskScript employeeSorter)
         {
             taskManager.TaskExecutor();
-            incomingTask.Execute();
-            listCarrier.ListSortSend();
+            //listCarrier.ListSortSend();
         }
     }
     public void ExitButton()
@@ -97,75 +94,73 @@ public class JsonUI : MonoBehaviour
     //    PrintJson(sortedList);
     //}
 
-    public EmployeeList Divider(EmployeeList myEmployeeList)
-    {
+    //public EmployeeList Divider(EmployeeList myEmployeeList)
+    //{
 
-        int length = myEmployeeList.Employees.Count;
-        if (length <= 1) { return myEmployeeList; }
-        EmployeeList leftList = new();
-        EmployeeList rightList = new EmployeeList();
-        leftList.Employees = new();
-        rightList.Employees = new();
-        int middle = length / 2;
+    //    int length = myEmployeeList.Employees.Count;
+    //    if (length <= 1) { return myEmployeeList; }
+    //    EmployeeList leftList = new();
+    //    EmployeeList rightList = new EmployeeList();
+    //    leftList.Employees = new();
+    //    rightList.Employees = new();
+    //    int middle = length / 2;
 
-        int i = 0; //left list
-        int j = 0; //right list
-            for (; i < length; i++)
-            {
-                if (i < middle)
-                {
-                    leftList.Employees.Add(myEmployeeList.Employees[i]);
-                }
-                else
-                {
-                    rightList.Employees.Add(myEmployeeList.Employees[i]);
-                    j++;
-                }
-            }
+    //    int i = 0; //left list
+    //    int j = 0; //right list
+    //        for (; i < length; i++)
+    //        {
+    //            if (i < middle)
+    //            {
+    //                leftList.Employees.Add(myEmployeeList.Employees[i]);
+    //            }
+    //            else
+    //            {
+    //                rightList.Employees.Add(myEmployeeList.Employees[i]);
+    //                j++;
+    //            }
+    //        }
 
-            Divider(leftList);
-            Divider(rightList);
-            EmployeeList sortedList = FrankenMerger(rightList, leftList, myEmployeeList);
-            return sortedList;
+    //        Divider(leftList);
+    //        Divider(rightList);
+    //        EmployeeList sortedList = FrankenMerger(rightList, leftList, myEmployeeList);
+    //        return sortedList;
+    //}
+    //public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList myEmployeeList)
+    //{
+    //    Debug.Log("kör frankenmerger");
+    //    int leftSize = leftList.Employees.Count;
+    //    int rightSize = rightList.Employees.Count;
+    //    int i = 0, l = 0, r = 0;
+
+    //    while (l < leftSize && r < rightSize)
+    //    {
+    //        DateTime leftSide = DateTime.Parse(leftList.Employees[l].LastExitFromEngineRoom);
+    //        DateTime rightSide = DateTime.Parse(rightList.Employees[r].LastExitFromEngineRoom);
+    //        if (leftSide.CompareTo(rightSide) < 0)
+    //        {
+    //            Debug.Log("compared "+DateTime.Parse(rightList.Employees[l].LastEntranceInEngineRoom));
+    //            myEmployeeList.Employees[i] = rightList.Employees[r];
+    //            i++; r++;
+    //        }
+    //        else
+    //        {
+    //            myEmployeeList.Employees[i] = leftList.Employees[l];
+    //            i++; l++;
+    //        }
+    //    }
+    //    while (l < leftSize)
+    //    {
+    //        myEmployeeList.Employees[i] = leftList.Employees[l];
+    //        i++; l++;
+    //    }
+    //    while (r < rightSize)
+    //    {
+    //        myEmployeeList.Employees[i] = rightList.Employees[r];
+    //        i++; r++;
+    //    }
+    //    //foreach (Employees employee in  myEmployeeList.employees)
+    //    //{
+    //    //    Debug.Log(employee.name + " " + employee.lastEntranceInEngineRoom);
+    //    //}
+    //    return myEmployeeList;
     }
-    public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList myEmployeeList)
-    {
-        Debug.Log("kör frankenmerger");
-        int leftSize = leftList.Employees.Count;
-        int rightSize = rightList.Employees.Count;
-        int i = 0, l = 0, r = 0;
-
-        while (l < leftSize && r < rightSize)
-        {
-            DateTime leftSide = DateTime.Parse(leftList.Employees[l].LastExitFromEngineRoom);
-            DateTime rightSide = DateTime.Parse(rightList.Employees[r].LastExitFromEngineRoom);
-            if (leftSide.CompareTo(rightSide) < 0)
-            {
-                Debug.Log("compared "+DateTime.Parse(rightList.Employees[l].LastEntranceInEngineRoom));
-                myEmployeeList.Employees[i] = rightList.Employees[r];
-                i++; r++;
-            }
-            else
-            {
-                myEmployeeList.Employees[i] = leftList.Employees[l];
-                i++; l++;
-            }
-        }
-        while (l < leftSize)
-        {
-            myEmployeeList.Employees[i] = leftList.Employees[l];
-            i++; l++;
-        }
-        while (r < rightSize)
-        {
-            myEmployeeList.Employees[i] = rightList.Employees[r];
-            i++; r++;
-        }
-        //foreach (Employees employee in  myEmployeeList.employees)
-        //{
-        //    Debug.Log(employee.name + " " + employee.lastEntranceInEngineRoom);
-        //}
-        return myEmployeeList;
-    }
-    
-}

@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: f31e3b1a55d254b47bb31f3a2712ac81
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - taskManager: {instanceID: 0}
+  - listCarrier: {fileID: 11400000, guid: 76bd68e8a43987445bf7e5f337040fac, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

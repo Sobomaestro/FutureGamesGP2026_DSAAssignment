@@ -12,7 +12,6 @@ namespace Environment.Tasks
         [SerializeField] SortTaskScript sortTask;
         JsonUI jsonUI;
 
-
         public void ListIntake(EmployeeList incomingList)            
         {
             employeeListSO.Employees = new();
@@ -26,14 +25,9 @@ namespace Environment.Tasks
 
         public void ListSortSend()
         {
-            EmployeeList sortedList = new EmployeeList();
-            sortedList = sortTask.Divider(employeeListSO);
-            sortTask.Execute();
-            jsonUI.PrintJson(sortedList);
+            employeeListSO = sortTask.Divider(employeeListSO);
+            jsonUI.PrintJson(employeeListSO);
         }
-
-
-
 
     }
 }

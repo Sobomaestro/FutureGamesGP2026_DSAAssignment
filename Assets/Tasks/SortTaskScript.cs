@@ -11,44 +11,57 @@ namespace Environment.Tasks
         [SerializeField] private string taskDescription = "Sort the list of Employees to find the suspect, and save the world.";
         [SerializeField] public playerTaskManager taskManager;
         [SerializeField] public EmployeeList myEmployeeList;
+        [SerializeField] public ScriptableObject listCarrier;
         public override void Execute()
         {
             Debug.Log("Executing sorting task");
-            //JsonUI jsonUI = GameObject.FindAnyObjectByType<JsonUI>();
-            //jsonUI.TaskActivated();
+           // Divider(myEmployeeList);
         }
-        public EmployeeList Divider(EmployeeList myEmployeeList)
+        public EmployeeList Divider(EmployeeList dividedEmployees)
         {
 
-            int length = myEmployeeList.Employees.Count;
-            if (length <= 1) { return myEmployeeList; }
+            int length = dividedEmployees.Employees.Count;
+            if (length <= 1) { return dividedEmployees; }
             EmployeeList leftList = new();
             EmployeeList rightList = new EmployeeList();
             leftList.Employees = new();
             rightList.Employees = new();
             int middle = length / 2;
+            int leftSize = middle;
+            int rightSize = dividedEmployees.Employees.Count - middle;
 
-            int i = 0; //left list
-            int j = 0; //right list
-            for (; i < length; i++)
+            //int i = 0; //left list
+            //int j = 0; //right list
+
+            for (int l = 0; l < leftSize; l++)
             {
-                if (i < middle)
-                {
-                    leftList.Employees.Add(myEmployeeList.Employees[i]);
-                }
-                else
-                {
-                    rightList.Employees.Add(myEmployeeList.Employees[i]);
-                    j++;
-                }
+                leftList.Employees.Add(dividedEmployees.Employees[l]);
             }
+            for (int r = 0; r < rightSize; r++)
+            {
+                rightList.Employees.Add(dividedEmployees.Employees[leftSize + r]);
+            }
+
+
+            //for (; i < length; i++)
+            //{
+            //    if (i < middle)
+            //    {
+            //        leftList.Employees.Add(dividedEmployees.Employees[i]);
+            //    }
+            //    else
+            //    {
+            //        rightList.Employees.Add(dividedEmployees.Employees[i]);
+            //        j++;
+            //    }
+            //}
 
             Divider(leftList);
             Divider(rightList);
-            EmployeeList sortedList = FrankenMerger(rightList, leftList, myEmployeeList);
+            EmployeeList sortedList = FrankenMerger(rightList, leftList, dividedEmployees);
             return sortedList;
         }
-        public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList myEmployeeList)
+        public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList frankenEmployees)
         {
             Debug.Log("kör frankenmerger");
             int leftSize = leftList.Employees.Count;
@@ -61,31 +74,30 @@ namespace Environment.Tasks
                 DateTime rightSide = DateTime.Parse(rightList.Employees[r].LastExitFromEngineRoom);
                 if (leftSide.CompareTo(rightSide) < 0)
                 {
-                    Debug.Log("compared " + DateTime.Parse(rightList.Employees[l].LastEntranceInEngineRoom));
-                    myEmployeeList.Employees[i] = rightList.Employees[r];
-                    i++; r++;
+                    frankenEmployees.Employees.Add(leftList.Employees[l]);
+                    l++;
                 }
                 else
                 {
-                    myEmployeeList.Employees[i] = leftList.Employees[l];
-                    i++; l++;
+                    frankenEmployees.Employees.Add(rightList.Employees[r]);
+                    r++;
                 }
             }
-            while (l < leftSize)
-            {
-                myEmployeeList.Employees[i] = leftList.Employees[l];
-                i++; l++;
-            }
-            while (r < rightSize)
-            {
-                myEmployeeList.Employees[i] = rightList.Employees[r];
-                i++; r++;
-            }
-            //foreach (Employees employee in  myEmployeeList.Employees)
+            //while (l < leftSize)
+            //{
+            //    frankenEmployees.Employees[i] = leftList.Employees[l];
+            //    i++; l++;
+            //}
+            //while (r < rightSize)
+            //{
+            //    frankenEmployees.Employees[i] = rightList.Employees[r];
+            //    i++; r++;
+            //}
+            //foreach (Employees employee in  frankenEmployees.Employees)
             //{
             //    Debug.Log(employee.name + " " + employee.LastEntranceInEngineRoom);
             //}
-            return myEmployeeList;
+            return frankenEmployees;
         }
     }
 }

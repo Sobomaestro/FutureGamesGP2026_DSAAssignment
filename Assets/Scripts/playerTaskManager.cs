@@ -110,6 +110,7 @@ namespace Environment.Tasks
         public Task TaskExecutor()
         {
             Task temp = playerTasks.PopIt();
+            temp.Execute();
             currentTask = TaskPeeker();
             UpdateTask(currentTask);
             return temp;
