@@ -11,6 +11,8 @@ public class Employees
     public bool HasEngineRoomClearance;
     public string LastEntranceInEngineRoom;
     public string LastExitFromEngineRoom;
+    public DateTime parsedEnter;
+    public DateTime parsedExit;
 
     public Employees() {
         this.Name = null;
@@ -18,6 +20,8 @@ public class Employees
         this.HasEngineRoomClearance = false;
         this.LastEntranceInEngineRoom = null;
         this.LastExitFromEngineRoom = null;
+        parsedEnter = DateTime.Parse(LastEntranceInEngineRoom);
+        parsedExit = DateTime.Parse(LastExitFromEngineRoom);
     }
 
 

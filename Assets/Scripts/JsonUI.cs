@@ -20,7 +20,7 @@ public class JsonUI : MonoBehaviour
     public InteractableTasks inter;
     public SortTaskScript employeeSorter;
     [SerializeField] Listcarrier listCarrier;
-
+    bool onceSorted = false;
     void Awake()
     {
         myEmployeeList.Employees = new();
@@ -35,6 +35,7 @@ public class JsonUI : MonoBehaviour
             taskManager.TaskExecutor();
             ExecuteJason();
             taskManager.TaskAdder(employeeSorter);
+            sortButton.interactable = true;
         }
         
     }
@@ -45,7 +46,14 @@ public class JsonUI : MonoBehaviour
         if (incomingTask is SortTaskScript employeeSorter)
         {
             taskManager.TaskExecutor();
-            //listCarrier.ListSortSend();
+            myEmployeeList = listCarrier.ListSortSend();
+            PrintJson(myEmployeeList);
+            onceSorted = true;
+        }
+        else if (onceSorted == true)
+        {
+            myEmployeeList = listCarrier.ListSortSend();
+            PrintJson(myEmployeeList); 
         }
     }
     public void ExitButton()

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 
@@ -12,92 +13,100 @@ namespace Environment.Tasks
         [SerializeField] public playerTaskManager taskManager;
         [SerializeField] public EmployeeList myEmployeeList;
         [SerializeField] public ScriptableObject listCarrier;
+        EmployeeList mergeList = new EmployeeList();
+
         public override void Execute()
         {
             Debug.Log("Executing sorting task");
-           // Divider(myEmployeeList);
         }
         public EmployeeList Divider(EmployeeList dividedEmployees)
         {
-
             int length = dividedEmployees.Employees.Count;
             if (length <= 1) { return dividedEmployees; }
-            EmployeeList leftList = new();
+            EmployeeList leftList = new EmployeeList();
             EmployeeList rightList = new EmployeeList();
             leftList.Employees = new();
             rightList.Employees = new();
             int middle = length / 2;
             int leftSize = middle;
-            int rightSize = dividedEmployees.Employees.Count - middle;
-
-            //int i = 0; //left list
-            //int j = 0; //right list
+            int rightSize;
+            if (dividedEmployees.Employees.Count % 2 == 0)
+            { rightSize = middle; }
+            else { rightSize = middle + 1; }
 
             for (int l = 0; l < leftSize; l++)
             {
                 leftList.Employees.Add(dividedEmployees.Employees[l]);
             }
-            for (int r = 0; r < rightSize; r++)
+            for (int r = rightSize; r < dividedEmployees.Employees.Count; r++)
             {
-                rightList.Employees.Add(dividedEmployees.Employees[leftSize + r]);
+                rightList.Employees.Add(dividedEmployees.Employees[r]);
             }
-
-
-            //for (; i < length; i++)
-            //{
-            //    if (i < middle)
-            //    {
-            //        leftList.Employees.Add(dividedEmployees.Employees[i]);
-            //    }
-            //    else
-            //    {
-            //        rightList.Employees.Add(dividedEmployees.Employees[i]);
-            //        j++;
-            //    }
-            //}
 
             Divider(leftList);
             Divider(rightList);
-            EmployeeList sortedList = FrankenMerger(rightList, leftList, dividedEmployees);
-            return sortedList;
+            return FrankenMerger(rightList, leftList);
         }
-        public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList, EmployeeList frankenEmployees)
+        public EmployeeList FrankenMerger(EmployeeList rightList, EmployeeList leftList)
         {
-            Debug.Log("kör frankenmerger");
+            EmployeeList mergeList = new EmployeeList();
+            mergeList.Employees = new();
             int leftSize = leftList.Employees.Count;
             int rightSize = rightList.Employees.Count;
-            int i = 0, l = 0, r = 0;
-
-            while (l < leftSize && r < rightSize)
+            int l = 0, r = 0;
+            Debug.Log(leftSize + " " + rightSize);
+            while (leftList.Employees.Count > 0 || rightList.Employees.Count > 0)
             {
-                DateTime leftSide = DateTime.Parse(leftList.Employees[l].LastExitFromEngineRoom);
-                DateTime rightSide = DateTime.Parse(rightList.Employees[r].LastExitFromEngineRoom);
-                if (leftSide.CompareTo(rightSide) < 0)
+                if (leftList.Employees.Count > 0 && rightList.Employees.Count > 0)
                 {
-                    frankenEmployees.Employees.Add(leftList.Employees[l]);
-                    l++;
+                    DateTime leftSide = DateTime.Parse(leftList.Employees[0].LastExitFromEngineRoom);
+                    DateTime rightSide = DateTime.Parse(rightList.Employees[0].LastExitFromEngineRoom);
+                    if (leftSide.CompareTo(rightSide) < 0)
+                    {
+                        mergeList.Employees.Add(leftList.Employees[0]);
+                        leftList.Employees.RemoveAt(0);
+                    }
+                    else
+                    {
+                        mergeList.Employees.Add(rightList.Employees[0]);
+                        rightList.Employees.RemoveAt(0);
+                    }
                 }
-                else
+                else if (leftList.Employees.Count > 0)
                 {
-                    frankenEmployees.Employees.Add(rightList.Employees[r]);
-                    r++;
+                    mergeList.Employees.Add(leftList.Employees[0]);
+                    leftList.Employees.RemoveAt(0);
+                }
+                else if (rightList.Employees.Count > 0)
+                {
+                    mergeList.Employees.Add(rightList.Employees[0]);
+                    rightList.Employees.RemoveAt(0);
                 }
             }
+            //while (l < leftSize && r < rightSize)
+            //{
+            //    DateTime leftSide = DateTime.Parse(leftList.Employees[l].LastExitFromEngineRoom);
+            //    DateTime rightSide = DateTime.Parse(rightList.Employees[r].LastExitFromEngineRoom);
+                
+                
+            //    else
+            //    {
+            //        mergeList.Employees.Add(rightList.Employees[r]);
+            //        r++;
+            //    }                
+            //}
             //while (l < leftSize)
             //{
-            //    frankenEmployees.Employees[i] = leftList.Employees[l];
-            //    i++; l++;
+            //    myEmployeeList.Employees.Add(leftList.Employees[l]);
+            //    l++;
             //}
             //while (r < rightSize)
             //{
-            //    frankenEmployees.Employees[i] = rightList.Employees[r];
-            //    i++; r++;
+            //    myEmployeeList.Employees.Add(rightList.Employees[r]);
+            //    r++;
             //}
-            //foreach (Employees employee in  frankenEmployees.Employees)
-            //{
-            //    Debug.Log(employee.name + " " + employee.LastEntranceInEngineRoom);
-            //}
-            return frankenEmployees;
+
+            return mergeList;
         }
     }
 }
