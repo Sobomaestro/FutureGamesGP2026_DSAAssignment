@@ -46,7 +46,7 @@ public class ExeComputor : Computer, IInteractable
         else
         {
             Debug.Log("nothing to execute, my liege");
-            taskManager.UpdateTask(null);
+            taskManager.UpdateTask();
             taskManager.LerpReset();
         }
 

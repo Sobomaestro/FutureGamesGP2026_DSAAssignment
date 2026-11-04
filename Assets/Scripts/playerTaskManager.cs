@@ -84,7 +84,7 @@ namespace Environment.Tasks
         public void TaskAdder(Task incomingTask)
         {
             playerTasks.PushIt(incomingTask);
-            UpdateTask(incomingTask);
+            UpdateTask();
         }
         public void LerpReset()
         {
@@ -93,9 +93,8 @@ namespace Environment.Tasks
             spotLight.intensity = 0;
         }
 
-        public void UpdateTask(Task incomingTask)
-        {
-            currentTask = incomingTask;
+        public void UpdateTask()
+        {            
             if (playerTasks.Count > 0)
             {
                 taskText.text = playerTasks.Peekaboo().ToString();
@@ -112,9 +111,8 @@ namespace Environment.Tasks
             Task temp = playerTasks.PopIt();
             temp.Execute();
             currentTask = TaskPeeker();
-            UpdateTask(currentTask);
+            UpdateTask();
             return temp;
-            
         }
         public Task TaskPeeker()
         {

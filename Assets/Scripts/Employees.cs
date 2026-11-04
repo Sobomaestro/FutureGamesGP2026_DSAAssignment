@@ -14,13 +14,13 @@ public class Employees
     public DateTime parsedEnter;
     public DateTime parsedExit;
 
-    public Employees() {
-        this.Name = null;
-        this.EmployeeId = 0;
-        this.HasEngineRoomClearance = false;
-        this.LastEntranceInEngineRoom = null;
-        this.LastExitFromEngineRoom = null;        
-    }
+    //public Employees() {
+    //    this.Name = null;
+    //    this.EmployeeId = 0;
+    //    this.HasEngineRoomClearance = false;
+    //    this.LastEntranceInEngineRoom = null;
+    //    this.LastExitFromEngineRoom = null;        
+    //}
     public void Initialize()
     {
         parsedEnter = DateTime.Parse(LastEntranceInEngineRoom);

@@ -8,7 +8,9 @@ namespace Environment.Tasks
     public class DebugPrintTask : Task
     {
         [SerializeField]
-        private string textToPrint;
+        public string textToPrint;
+        
+        
         
 
         public override void Execute()
