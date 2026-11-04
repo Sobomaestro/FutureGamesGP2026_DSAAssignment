@@ -15,7 +15,7 @@ namespace Utils
             hashMap = new[] { new List<int>() };
         }
 
-        private static int computeHash(int valueToHash, int hashMapLength)
+        private static int ComputeHash(int valueToHash, int hashMapLength)
         {
             if (hashMapLength == 0)
             {
@@ -24,9 +24,9 @@ namespace Utils
             return valueToHash % hashMapLength;
         }
 
-        public void put(int inNewValue)
+        public void Put(int inNewValue)
         {
-            int hash = computeHash(inNewValue, hashMap.Length);
+            int hash = ComputeHash(inNewValue, hashMap.Length);
 
             // if bucket is empty
             if (hashMap[hash].Count == 0)
@@ -44,8 +44,15 @@ namespace Utils
             }
         }
 
-        public int get(int inValueToSearch)
-        { // do at home as an excercise
+        public int Get(int inValueToSearch)
+        { // do at home as an excercise            
+            int hashIndex = ComputeHash(inValueToSearch, hashMap.Length);
+            for (int i = 0; i < hashMap[hashIndex].Count; i++)
+            {
+                if (hashMap[hashIndex][i] == inValueToSearch)
+                { return hashMap[hashIndex][i]; }
+            }
+            Debug.Log("no valid entries matching your search");
             return -1;
         }
 

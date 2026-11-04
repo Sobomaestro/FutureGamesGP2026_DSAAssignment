@@ -102,15 +102,10 @@ namespace Environment.Tasks
             if(length > 1)
             {
                 if (indexList.Employees[quarter].parsedExit.CompareTo(low) < 0)
-                { boi = 25; }
-                else if (indexList.Employees[middle].parsedExit.CompareTo(low) < 0)
-                { boi = 49; }
-                else if (indexList.Employees[middle + quarter].parsedExit.CompareTo(low) >= 0)
-                { boi = 75; }
-                else { boi = 100; }
+                { for(int i = }
                 RecursiveBinary(resultList, low, indexNo);
             }
-            
+            resultList.Employees.AddRange(indexList.Employees, 0, 25);
 
             return indexNo;
         }
