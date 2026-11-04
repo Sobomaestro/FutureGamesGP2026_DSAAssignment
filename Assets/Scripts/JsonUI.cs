@@ -46,14 +46,8 @@ public class JsonUI : MonoBehaviour
         if (incomingTask is SortTaskScript employeeSorter)
         {
             taskManager.TaskExecutor();
-            myEmployeeList = listCarrier.ListSortSend();
-            PrintJson(myEmployeeList);
-            onceSorted = true;
-        }
-        else if (onceSorted == true)
-        {
-            myEmployeeList = listCarrier.ListSortSend();
-            PrintJson(myEmployeeList); 
+            listCarrier.ListSortSend();
+            sortButton.interactable = false;
         }
     }
     public void ExitButton()
@@ -64,6 +58,10 @@ public class JsonUI : MonoBehaviour
     public void ExecuteJason()
     {
         myEmployeeList = JsonUtility.FromJson<EmployeeList>(inter.jsonFile.text);
+        for(int i = 0; i < myEmployeeList.Employees.Count; i++)
+        {
+            myEmployeeList.Employees[i].Initialize();
+        }
         //var dateTime = DateTime.Parse(myEmployeeList.employees[0].lastEntranceInEngineRoom);
         Debug.Log("the length of the list going out is: " + myEmployeeList.Employees.Count);
         listCarrier.ListIntake(myEmployeeList);
@@ -72,16 +70,19 @@ public class JsonUI : MonoBehaviour
 
     public void PrintJson(EmployeeList employeeList)
     {
-        Debug.Log("Printing!");
+        string longAssString = null;
+
+       Debug.Log("Printing!");
         jsonTextbox.text = " ";
         foreach (Employees employees in employeeList.Employees)
         {
-            jsonTextbox.text += employees.Name.ToString() + ", EmployeeID: " + employees.EmployeeId.ToString() + "\r\n";
-            jsonTextbox.text += "Has engine room clearance? " + employees.HasEngineRoomClearance.ToString() + "\r\n";
-            jsonTextbox.text += "Last entrance in engine room: " + employees.LastEntranceInEngineRoom.ToString() + "\r\n";
-            jsonTextbox.text += "Last exit from engine room: " + employees.LastExitFromEngineRoom.ToString() + "\r\n";
-            jsonTextbox.text += "____________________\r\n";
+             longAssString +=   employees.Name + ", EmployeeID: " + employees.EmployeeId.ToString() + "\r\n" +
+                                "Has engine room clearance? " + employees.HasEngineRoomClearance + "\r\n" +
+                                "Last entrance in engine room: " + employees.LastEntranceInEngineRoom + "\r\n" +
+                                "Last exit from engine room: " + employees.LastExitFromEngineRoom + "\r\n" +
+                                "____________________\r\n";
         }
+        jsonTextbox.text = longAssString;
     }
 
     //public void SortButtonClick()

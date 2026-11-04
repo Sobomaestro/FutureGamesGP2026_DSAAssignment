@@ -10,105 +10,161 @@ namespace Environment.Tasks
     public class BinarySearchTask : ScriptableObject
     {
         EmployeeList employees = new EmployeeList();
-        
-        public EmployeeList BinarySearchSpan (EmployeeList searchList, DateTime low, DateTime high)
+        EmployeeList indexCutList = new EmployeeList();
+        DateTime lowSearchFloor;
+        DateTime highSearchRoof;
+        public int lowIndex;
+        public int highIndex;
+
+        void IntakeSearchData()
         {
-            int length = searchList.Employees.Count;
-            EmployeeList resultList = new();
-            resultList.Employees = new();
-            int middle = length / 2;
-            int indexLow = 0;
-            int indexHigh;
-            int fakeLength;
-            bool loPass = false;
-            bool hiPass = false;
-            if (length % 2 != 0)
-            { middle += 1; }
-            int quarter = length / 2;
-            if (middle % 2 != 0)
-            { quarter += 1; }
-
-            int index = RecursiveBinary(searchList, low, indexLow);
-
-            if (low.CompareTo(DateTime.Parse(searchList.Employees[middle].LastExitFromEngineRoom)) < 0)
+            lowIndex = RecursiveBinary(employees, lowSearchFloor);
+            for (int i = lowIndex; i < employees.Employees.Count - 1; i++)
             {
-                if (low.CompareTo(DateTime.Parse(searchList.Employees[quarter].LastExitFromEngineRoom)) <= 0)
-                {
-                    for (int i = 0; i < quarter; i++)
-                    {
-                        if (low.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) >= 0)
-                        {
-                            indexLow = i;
-                            loPass = true;
-                        }
-                    }
-                }
-                if (loPass != true)
-                { 
-                    for (int i = quarter; i < middle; i++)
-                    {
-                        if (low.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) >= 0)
-                        {
-                            indexLow = i;
-                        }
-                    }
-                }
+                indexCutList.Employees[i] = employees.Employees[i];
             }
-            else if (low.CompareTo(DateTime.Parse(searchList.Employees[middle].LastExitFromEngineRoom)) >= 0)
+            highIndex = RecursiveBinary(indexCutList, highSearchRoof) + lowIndex;
+            for ( int i = lowIndex; i < highIndex; i++)
             {
-                if (low.CompareTo(searchList.Employees[middle + quarter].LastExitFromEngineRoom) >= 0)
-                {
-                    for (int i = middle + quarter; i < length; i++)
-                    {
-                        if (low.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) >= 0)
-                        indexLow = i - 1;
-                        loPass = true;
-                    }
-                }
-                if (loPass != true)
-                {
-                    for (int i = middle; i < (middle + quarter); i++)
-                    {
-                        if (low.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) >= 0)
-                        indexLow = i - 1;
-                    }
-                }
+                indexCutList.Employees[i] = employees.Employees[i];
             }
-            else { return null; }
-
-           for( int i = indexLow; i < length; i++)
-            {
-                if (high.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) > 0)
-                { break; }
-                else resultList.Employees.Add(searchList.Employees[i]);
-            }
-
-            return searchList;
         }
 
-        public int RecursiveBinary(EmployeeList indexList, DateTime low, int boi)
+        public int RecursiveBinary(EmployeeList indexList, DateTime low)
         {
             int length = indexList.Employees.Count;
             EmployeeList resultList = new EmployeeList();
             resultList.Employees = new();
             int indexNo = 0;
             int middle = length / 2;
-            if (length %2 != 0)
+            if (length % 2 != 0)
             { middle += 1; }
             int quarter = middle / 2;
             if ( middle % 2 != 0)
             { quarter += 1; }
 
-            if(length > 1)
+            if (indexList.Employees[middle].parsedExit == low)
+            {
+                Console.WriteLine("the index for low is" + middle);
+                return middle; 
+            }
+
+            if(length > 10)
             {
                 if (indexList.Employees[quarter].parsedExit.CompareTo(low) < 0)
-                { for(int i = }
-                RecursiveBinary(resultList, low, indexNo);
+                {
+                    for (int i = 0; i < quarter; i++)
+                    {
+                        resultList.Employees[i] = indexList.Employees[i];
+                    }
+                }
+                else if (indexList.Employees[quarter + middle].parsedExit.CompareTo(low) < 0)
+                {
+                    for (int i = middle + quarter; i < indexList.Employees.Count; i++)
+                    { 
+                        resultList.Employees[i] = indexList.Employees[i];
+                    }
+                }
+                else if (indexList.Employees[middle].parsedExit.CompareTo(low) < 0)
+                RecursiveBinary(resultList, low);
             }
-            resultList.Employees.AddRange(indexList.Employees, 0, 25);
+            else if(length > 1)
+            {
+                if (indexList.Employees[middle].parsedExit.CompareTo(low) < 0)
+                {
+                    for (int i = quarter; i < middle; i++)
+                    {
+                        resultList.Employees[i] = indexList.Employees[i];
+                    }
+                }
+                else if (indexList.Employees[middle].parsedExit.CompareTo(low) < 0)
+                {
+                    for (int i = middle; i < indexList.Employees.Count; i++)
+                    {
+                        resultList.Employees[i] = indexList.Employees[i];
+                    }
+                }
+                RecursiveBinary(resultList, low);
+            }
+            //resultList.Employees.AddRange(indexList.Employees, 0, 25);
 
             return indexNo;
         }
     }
-
 }
+
+
+//public EmployeeList BinarySearchSpan(EmployeeList searchList, DateTime low, DateTime high)
+//{
+//    int length = searchList.Employees.Count;
+//    EmployeeList resultList = new();
+//    resultList.Employees = new();
+//    int middle = length / 2;
+//    int indexLow = 0;
+//    int indexHigh;
+//    int fakeLength;
+//    bool loPass = false;
+//    bool hiPass = false;
+//    if (length % 2 != 0)
+//    { middle += 1; }
+//    int quarter = length / 2;
+//    if (middle % 2 != 0)
+//    { quarter += 1; }
+
+//    int index = RecursiveBinary(searchList, low, indexLow);
+
+//    if (low.CompareTo(DateTime.Parse(searchList.Employees[middle].LastExitFromEngineRoom)) < 0)
+//    {
+//        if (low.CompareTo(DateTime.Parse(searchList.Employees[quarter].LastExitFromEngineRoom)) <= 0)
+//        {
+//            for (int i = 0; i < quarter; i++)
+//            {
+//                if (low.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) >= 0)
+//                {
+//                    indexLow = i;
+//                    loPass = true;
+//                }
+//            }
+//        }
+//        if (loPass != true)
+//        {
+//            for (int i = quarter; i < middle; i++)
+//            {
+//                if (low.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) >= 0)
+//                {
+//                    indexLow = i;
+//                }
+//            }
+//        }
+//    }
+//    else if (low.CompareTo(DateTime.Parse(searchList.Employees[middle].LastExitFromEngineRoom)) >= 0)
+//    {
+//        if (low.CompareTo(searchList.Employees[middle + quarter].LastExitFromEngineRoom) >= 0)
+//        {
+//            for (int i = middle + quarter; i < length; i++)
+//            {
+//                if (low.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) >= 0)
+//                    indexLow = i - 1;
+//                loPass = true;
+//            }
+//        }
+//        if (loPass != true)
+//        {
+//            for (int i = middle; i < (middle + quarter); i++)
+//            {
+//                if (low.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) >= 0)
+//                    indexLow = i - 1;
+//            }
+//        }
+//    }
+//    else { return null; }
+
+//    for (int i = indexLow; i < length; i++)
+//    {
+//        if (high.CompareTo(DateTime.Parse(searchList.Employees[i].LastExitFromEngineRoom)) > 0)
+//        { break; }
+//        else resultList.Employees.Add(searchList.Employees[i]);
+//    }
+
+//    return searchList;
+//}

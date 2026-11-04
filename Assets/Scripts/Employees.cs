@@ -19,14 +19,17 @@ public class Employees
         this.EmployeeId = 0;
         this.HasEngineRoomClearance = false;
         this.LastEntranceInEngineRoom = null;
-        this.LastExitFromEngineRoom = null;
+        this.LastExitFromEngineRoom = null;        
+    }
+    public void Initialize()
+    {
         parsedEnter = DateTime.Parse(LastEntranceInEngineRoom);
         parsedExit = DateTime.Parse(LastExitFromEngineRoom);
     }
 
-
 }
 [Serializable]
+
 public class EmployeeList {
     public List<Employees> Employees = new List<Employees>();
     //public Employees[] employees;

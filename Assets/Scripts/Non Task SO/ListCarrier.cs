@@ -23,10 +23,12 @@ namespace Environment.Tasks
             jsonUI.PrintJson(employeeListSO);
         }
 
-        public EmployeeList ListSortSend()
+        public void ListSortSend()
         {
-            employeeListSO = sortTask.Divider(employeeListSO);
-            return employeeListSO;
+            //employeeListSO = sortTask.Divider(employeeListSO);
+            sortTask.QuickerThanSort(employeeListSO, 0, employeeListSO.Employees.Count-1);
+            jsonUI = FindAnyObjectByType<JsonUI>();
+            jsonUI.PrintJson(employeeListSO);
         }
 
     }
