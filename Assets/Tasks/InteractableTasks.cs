@@ -32,8 +32,12 @@ namespace Environment.Tasks
         {
             sortTask.QuickerThanQuicksort(myEmployeeList, 0, myEmployeeList.Employees.Count - 1);
             jsonUI.PrintJson(myEmployeeList);
-            foreach (Employees employee in myEmployeeList.Employees)
-            { Debug.Log(employee.EmployeeId + " " + employee.parsedExit); }
+            foreach (Employees employee in myEmployeeList.Employees) ;
+            
+        }
+        public EmployeeList ListSend()
+        {
+            return myEmployeeList;
         }
 
     }

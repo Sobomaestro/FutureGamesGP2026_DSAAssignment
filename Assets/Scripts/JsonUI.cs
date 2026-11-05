@@ -14,7 +14,7 @@ public class JsonUI : MonoBehaviour
     [SerializeField] Canvas jsonUI;
     public InteractableTasks inter;
     public SortTaskScript employeeSorter;
-    [SerializeField] Listcarrier listCarrier;
+    [SerializeField] searchMenuUI searchMenu;
 
 
     public void LoadButton()
@@ -40,6 +40,13 @@ public class JsonUI : MonoBehaviour
         }
         else { Debug.Log("This task dosen't fit in this computer slot..."); }
     }
+    public void OpenSearchWindow()
+    {
+        searchMenu.searchMenu.interactable = true;
+        searchMenu.searchMenu.alpha = 1.0f;
+        searchMenu.searchMenu.blocksRaycasts = true;
+    }
+
     public void ExitButton()
     {
         jsonUI.enabled = false;
