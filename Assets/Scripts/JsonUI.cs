@@ -57,13 +57,15 @@ public class JsonUI : MonoBehaviour
         string longAssString = null;        
         Debug.Log("Printing!");
         jsonTextbox.text = " ";
+        int i = 1;
         foreach (Employees employees in employeeList.Employees)
         {
-             longAssString +=   employees.Name + ", EmployeeID: " + employees.EmployeeId.ToString() + "\r\n" +
+             longAssString +=  "Index: " + i + ". " +employees.Name + ", EmployeeID: " + employees.EmployeeId.ToString() + "\r\n" +
                                 "Has engine room clearance? " + employees.HasEngineRoomClearance + "\r\n" +
                                 "Last entrance in engine room: " + employees.LastEntranceInEngineRoom + "\r\n" +
                                 "Last exit from engine room: " + employees.LastExitFromEngineRoom + "\r\n" +
                                 "____________________\r\n";
+            i++;
         }
         jsonTextbox.text = longAssString;
     }

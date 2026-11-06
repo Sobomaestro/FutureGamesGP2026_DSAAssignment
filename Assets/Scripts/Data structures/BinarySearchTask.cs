@@ -15,25 +15,32 @@ namespace Environment.Tasks
         public int lowIndex;
         public int highIndex;
         public int midIndex;
+        
 
         public int[] IntakeSearchData(EmployeeList listToSearch, DateTime lowSearchFloor, DateTime highSearchRoof)
         {
-            employees.Employees = new();
+            indexCutList.Employees = new();
             int[] indexArray = new int[2];
-            indexArray[0] = RecursiveBinary(listToSearch, lowSearchFloor);
-            for (int i = lowIndex; i < employees.Employees.Count - 1; i++)
+            midIndex = listToSearch.Employees.Count / 2;
+            RecursiveBinary(listToSearch, lowSearchFloor);
+            indexArray[0] = midIndex;
+            for (int i = lowIndex; i < listToSearch.Employees.Count - 1; i++)
             {
-                indexCutList.Employees[i] = employees.Employees[i];
+                indexCutList.Employees.Add(listToSearch.Employees[i]);
             }
-            indexArray[1] = RecursiveBinary(indexCutList, highSearchRoof) + lowIndex;
+            midIndex = indexCutList.Employees.Count / 2;
+            int listDelta = listToSearch.Employees.Count - indexCutList.Employees.Count;
+            RecursiveBinary(indexCutList, highSearchRoof);            
+            indexArray[1] = midIndex + listDelta;
             for ( int i = lowIndex; i < highIndex; i++)
             {
                 indexCutList.Employees[i] = employees.Employees[i];
             }
+            Debug.Log($"LowIndex is: {indexArray[0]} and highIndex is: {indexArray[1]}");
             return indexArray;
         }
 
-        public int RecursiveBinary(EmployeeList employees, DateTime low)
+        public void RecursiveBinary(EmployeeList employees, DateTime low)
         {
             int length = employees.Employees.Count;
             Debug.Log(length);
@@ -44,64 +51,44 @@ namespace Environment.Tasks
             { middle += 1; }
             int quarter = middle / 2;
             if ( middle % 2 != 0)
-            { quarter += 1; }
-            bool done = false;
-            midIndex = middle;
+            { quarter += 1; }                  
             if (employees.Employees.Count == 1)
             {
-                 return 0;
+                 return;
             }
-            if (employees.Employees[middle].parsedExit == low)
-            {
-                Console.WriteLine("the index for low is" + middle);
-                return middle; 
-            }
+            //if (employees.Employees[middle].parsedExit == low)
+            //{
+            //    Console.WriteLine("the index for low is" + middle);
+            //    return; 
+            //}
 
-            if(length > 10 && !done)
-            {
-                if (employees.Employees[quarter].parsedExit.CompareTo(low) < 0)
-                {
-                    for (int i = 0; i < quarter; i++)
-                    {
-                        resultList.Employees.Add(employees.Employees[i]);
-                    }
-                    RecursiveBinary(resultList, low);
-                    //low == median
-                }
-                else if (employees.Employees[quarter + middle].parsedExit.CompareTo(low) < 0)
-                {
-                    for (int i = middle + quarter; i < employees.Employees.Count; i++)
-                    {
-                        resultList.Employees.Add(employees.Employees[i]);
-                    }
-                    RecursiveBinary(resultList, low);
-                }
-                else if (employees.Employees[middle].parsedExit.CompareTo(low) < 0)
-                    Debug.Log(resultList.Employees.Count);
-                
-            }
-            else if(length > 1)
+
+            if(length > 1)
             {
                 if (employees.Employees[middle].parsedExit.CompareTo(low) > 0)
                 {
-                    for (int i = quarter; i < middle; i--)
+                    for (int i = 0; i < middle; i++)
                     {
                         resultList.Employees.Add(employees.Employees[i]);
                     }
+                    midIndex -= middle / 2;
+                    Debug.Log($"midIndex is {midIndex} ");
                     RecursiveBinary(resultList, low);
                 }
-                else if (employees.Employees[middle].parsedExit.CompareTo(low) < 0)
+                else 
                 {
-                    for (int i = middle; i < employees.Employees.Count; i++)
+                    for (int i = middle; i < employees.Employees.Count - 1; i++)
                     {
                         resultList.Employees.Add(employees.Employees[i]);
                     }
+                    midIndex += middle / 2;
+                    Debug.Log($"midIndex is {midIndex} ");
                     RecursiveBinary(resultList, low);
                 }
             }
             //resultList.Employees.AddRange(indexList.Employees, 0, 25);
 
-            return indexNo;
+            return;
         }
     }
 }
@@ -180,4 +167,29 @@ namespace Environment.Tasks
 //    }
 
 //    return searchList;
+//}
+
+
+//if(length > 10 && !done)
+//{
+//    if (employees.Employees[quarter].parsedExit.CompareTo(low) < 0)
+//    {
+//        for (int i = 0; i < quarter; i++)
+//        {
+//            resultList.Employees.Add(employees.Employees[i]);
+//        }
+//        RecursiveBinary(resultList, low);
+//        //low == median
+//    }
+//    else if (employees.Employees[quarter + middle].parsedExit.CompareTo(low) < 0)
+//    {
+//        for (int i = middle + quarter; i < employees.Employees.Count; i++)
+//        {
+//            resultList.Employees.Add(employees.Employees[i]);
+//        }
+//        RecursiveBinary(resultList, low);
+//    }
+//    else if (employees.Employees[middle].parsedExit.CompareTo(low) < 0)
+//        Debug.Log(resultList.Employees.Count);
+
 //}
