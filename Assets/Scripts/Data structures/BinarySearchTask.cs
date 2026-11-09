@@ -30,7 +30,8 @@ namespace Environment.Tasks
 
         public int MorgarySearch(int low, int high, DateTime date, EmployeeList employeeList)
         {
-            int middle = employeeList.Employees.Count;
+            int middle = employeeList.Employees.Count / 2;
+
             while (high - low > 1)
             {
                 middle = low + (high - low) / 2;
