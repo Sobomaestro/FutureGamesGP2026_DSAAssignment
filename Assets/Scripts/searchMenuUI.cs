@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Diagnostics;
 
 public class searchMenuUI : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class searchMenuUI : MonoBehaviour
     DateTime spanFloor;
     DateTime spanCeiling;
     int[] indexLowHigh = new int[2];
+    [SerializeField] InteractableTasks jsonHolder;
+    JsonUI jsonUI;
 
 
     public void CloseSearchWindow()
@@ -39,8 +42,11 @@ public class searchMenuUI : MonoBehaviour
     }
 
     public void Search()
-    { 
+    {
+        var sw2 = new Stopwatch();
+        sw2.Start();
         CheckDates(lowYearTbx.text, lowMonthTbx.text, lowDayTbx.text);
+        var sw = new Stopwatch();
         
         if (validDateTime)
         { spanFloor = DateTime.Parse(lowYearTbx.text + "-" + lowMonthTbx.text + "-" + lowDayTbx.text + "T" + lowHourTbx.text + ":" + lowMinuteTbx.text + ":" + lowSecondTbx.text); }
@@ -52,22 +58,21 @@ public class searchMenuUI : MonoBehaviour
         else { errorBox.text = "High date is not valid, check your entries"; return; }
 
         EmployeeList searchList = jsonList.ListSend();
+        sw.Start();
         indexLowHigh = binarySearch.IntakeSearchData(searchList, spanFloor, spanCeiling);
-        for (int i = indexLowHigh[0]; i <= indexLowHigh[1]; i++)
-        {
-            Debug.Log($"index {i} in span of search {searchList.Employees[i]}");
-        }
+        sw.Stop();
+        UnityEngine.Debug.Log("Search right before and after the actual search took: " + sw.ElapsedTicks + " Ticks");
+        jsonList.PrintSearchSpan(indexLowHigh);
+        sw2.Stop();
+        UnityEngine.Debug.Log("Entire search task took around: " + sw2.ElapsedTicks + " Ticks");
     }
 
     void CheckDates(string year, string month, string day)
     {
-        Debug.Log(year + month + day);
         int yearInt = int.Parse(year);
-        
         int monthInt = int.Parse(month);
         int dayInt = int.Parse(day);
         validDateTime = searchSpan.CheckMonths(yearInt, monthInt, dayInt);
-        Debug.Log(year + month + day);
     }
 
 }
