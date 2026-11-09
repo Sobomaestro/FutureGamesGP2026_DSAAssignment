@@ -55,9 +55,9 @@ public class JsonUI : MonoBehaviour
     public void PrintJson(EmployeeList employeeList)
     {
         string longAssString = null;        
-        Debug.Log("Printing!");
         jsonTextbox.text = " ";
         int i = 1;
+        jsonTextbox.maxVisibleCharacters = 1000000;
         foreach (Employees employees in employeeList.Employees)
         {
              longAssString +=  "Index: " + i + ". " +employees.Name + ", EmployeeID: " + employees.EmployeeId.ToString() + "\r\n" +
@@ -66,6 +66,22 @@ public class JsonUI : MonoBehaviour
                                 "Last exit from engine room: " + employees.LastExitFromEngineRoom + "\r\n" +
                                 "____________________\r\n";
             i++;
+        }
+        jsonTextbox.text = longAssString;
+    }
+
+    public void PrintSearchSpan(EmployeeList employees, int[] index)
+    {
+        string longAssString = null;
+        jsonTextbox.text = " ";
+        jsonTextbox.maxVisibleCharacters = 1000000;
+        for (int i = index[0]; i < index[1]; i++)
+        {
+            longAssString += "Index: " + i + ". " + employees.Employees[i].Name + ", EmployeeID: " + employees.Employees[i].EmployeeId.ToString() + "\r\n" +
+                                "Has engine room clearance? " + employees.Employees[i].HasEngineRoomClearance + "\r\n" +
+                                "Last entrance in engine room: " + employees.Employees[i].LastEntranceInEngineRoom + "\r\n" +
+                                "Last exit from engine room: " + employees.Employees[i].LastExitFromEngineRoom + "\r\n" +
+                                "____________________\r\n";
         }
         jsonTextbox.text = longAssString;
     }
