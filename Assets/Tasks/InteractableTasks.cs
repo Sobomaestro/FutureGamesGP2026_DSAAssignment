@@ -20,6 +20,7 @@ namespace Environment.Tasks
         public override void Execute()
         {
             myEmployeeList = new EmployeeList();
+
             myEmployeeList.Employees = new();
             myEmployeeList = JsonUtility.FromJson<EmployeeList>(jsonFile.text);
             for (int i = 0; i < myEmployeeList.Employees.Count; i++)

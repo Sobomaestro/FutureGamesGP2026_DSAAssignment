@@ -1,53 +1,67 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
+using System.Diagnostics.SymbolStore;
 using UnityEngine;
 
 public class Tree : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
 
 
 public class Node
 {
-    public DateTime data;
+    public Employees data;
     public Node left, right;
-    public Node(DateTime x)
+    public Node(Employees x)
     {
         data = x;
         left = null;
         right = null;
     }
-
 }
 
-public class TreeMaker
+public class TreeNode
 {
-    static Node insert(Node root, DateTime key)
+    Node root;
+    static void insert(Node root, Employees key)
     {
         if (root == null)
-            return new Node(key);
+            root = new(key);
 
-        if (key == root.data)
-            return root;
-
-        if (key.CompareTo(root.data) <= 0)
+        if (key.parsedExit.CompareTo(root.data.parsedExit) <= 0)
         {
-            root.left = insert(root.left, key);
+            insert(root.left, key);
         }
-
         else
-            root.right = insert(root.right, key);
-
-        return root;
+            insert(root.right, key);
     }
+
+    static List<int> DFS(List<List<int>> adj)
+    {
+        bool[] visited = new bool[adj.Count];
+        List<int> res = new List<int>();
+        DfsRec(adj, visited, 0, res);
+        return res;
+    }
+
+    static void DfsRec(List<List<int>> adj, bool[] visited, int s, List<int> res)
+    {
+        visited[s] = true;
+        res.Add(s);
+
+        foreach(int i in adj[s])
+        {
+            if (!visited[i])
+                DfsRec(adj, visited, i, res);
+        }
+    }
+    
+       //    https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
+       //    https://github.com/gt4dev/yet-another-tree-structure/blob/master/csharp/CSharpTree/TreeNode.cs
+    
 }
+
+
