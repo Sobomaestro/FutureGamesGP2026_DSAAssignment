@@ -27,14 +27,17 @@ namespace Environment.Tasks
             { myEmployeeList.Employees[i].Initialize(); }
             jsonUI = FindAnyObjectByType<JsonUI>();
             jsonUI.PrintJson(myEmployeeList);
+            for (int i = 0; i <= myEmployeeList.Employees.Count; ++i)
+            {
+                Node x = new Node(myEmployeeList.Employees[i]);
+                //TreeNode.Insert(x);
+            }
         }
 
         public void SortList()
         {
             sortTask.QuickerThanQuicksort(myEmployeeList, 0, myEmployeeList.Employees.Count - 1);
             jsonUI.PrintJson(myEmployeeList);
-            foreach (Employees employee in myEmployeeList.Employees) ;
-
         }
         public EmployeeList ListSend()
         {

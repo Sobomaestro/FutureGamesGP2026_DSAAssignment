@@ -25,18 +25,32 @@ public class Node
 
 public class TreeNode
 {
-    Node root;
-    static void insert(Node root, Employees key)
-    {
+    public static void Insert(Node root, Employees key)
+    {        
+
         if (root == null)
             root = new(key);
 
         if (key.parsedExit.CompareTo(root.data.parsedExit) <= 0)
         {
-            insert(root.left, key);
+            if (root.left == null)
+            {
+                root.left = new Node(key);
+            }
+            else
+            {
+                Insert(root.left, key);
+            }
         }
         else
-            insert(root.right, key);
+            if (root.right == null)
+            {
+                root.right = new Node(key);
+            }
+            else
+            {
+                Insert(root.right, key);
+            }
     }
 
     static List<int> DFS(List<List<int>> adj)
