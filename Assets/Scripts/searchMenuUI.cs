@@ -24,6 +24,7 @@ public class searchMenuUI : MonoBehaviour
     [SerializeField] public CanvasGroup searchMenu;
     [SerializeField] SearchSpanParser searchSpan;
     [SerializeField] BinarySearchTask binarySearch;
+    [SerializeField] BSTDFS treeDFS;
     [SerializeField] InteractableTasks jsonList;
     #endregion
     bool validDateTime;
@@ -56,11 +57,12 @@ public class searchMenuUI : MonoBehaviour
         if (validDateTime)
         { spanCeiling = DateTime.Parse(highYearTbx.text + "-" + highMonthTbx.text + "-" + highDayTbx.text + "T" + highHourTbx.text + ":" + highMinuteTbx.text + ":" + highSecondTbx.text); }
         else { errorBox.text = "High date is not valid, check your entries"; return; }
-
+        Node root = jsonList.NodeSend();
         EmployeeList searchList = jsonList.ListSend();
         sw.Start();
         indexLowHigh = binarySearch.IntakeSearchData(searchList, spanFloor, spanCeiling);
         sw.Stop();
+        treeDFS.TreeSearchSpan(root, spanFloor, spanCeiling);
         UnityEngine.Debug.Log("Search right before and after the actual search took: " + sw.ElapsedTicks + " Ticks");
         jsonList.PrintSearchSpan(indexLowHigh);
         sw2.Stop();

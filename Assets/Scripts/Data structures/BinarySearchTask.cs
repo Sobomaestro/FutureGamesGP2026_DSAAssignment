@@ -28,6 +28,7 @@ namespace Environment.Tasks
             return indexArray;
         }
 
+
         public int MorgarySearch(int low, int high, DateTime date, EmployeeList employeeList)
         {
             int middle = employeeList.Employees.Count / 2;
@@ -45,7 +46,7 @@ namespace Environment.Tasks
                 }
             }
             return middle;
-
         }
+
     }
 }

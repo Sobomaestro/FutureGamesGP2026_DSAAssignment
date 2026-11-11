@@ -14,23 +14,25 @@ namespace Environment.Tasks
         [SerializeField] public playerTaskManager taskManager;
         [SerializeField] SortTaskScript sortTask;
         [SerializeField] EmployeeList myEmployeeList;
+        public Node root;
         [SerializeField] Task employeeSorter;
         JsonUI jsonUI;
         private string textToPrint = "Beep boop, computer sounds, a thousand modems singing in unison far, far away";
         public override void Execute()
         {
             myEmployeeList = new EmployeeList();
-
             myEmployeeList.Employees = new();
             myEmployeeList = JsonUtility.FromJson<EmployeeList>(jsonFile.text);
             for (int i = 0; i < myEmployeeList.Employees.Count; i++)
-            { myEmployeeList.Employees[i].Initialize(); }
+            { 
+                myEmployeeList.Employees[i].Initialize(); 
+            }
             jsonUI = FindAnyObjectByType<JsonUI>();
             jsonUI.PrintJson(myEmployeeList);
             for (int i = 0; i <= myEmployeeList.Employees.Count; ++i)
             {
-                Node x = new Node(myEmployeeList.Employees[i]);
-                //TreeNode.Insert(x);
+                root = new Node(myEmployeeList.Employees[i]);
+                TreeNode.Insert(root, myEmployeeList.Employees[i]);
             }
         }
 
@@ -42,6 +44,10 @@ namespace Environment.Tasks
         public EmployeeList ListSend()
         {
             return myEmployeeList;
+        }
+        public Node NodeSend()
+        {
+            return root;
         }
         public void PrintSearchSpan(int[] index)
         {

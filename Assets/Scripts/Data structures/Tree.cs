@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
@@ -53,24 +54,44 @@ public class TreeNode
             }
     }
 
-    static List<int> DFS(List<List<int>> adj)
+    public void TreeSearchSpan(Node root, DateTime low, DateTime high)
     {
-        bool[] visited = new bool[adj.Count];
-        List<int> res = new List<int>();
-        DfsRec(adj, visited, 0, res);
-        return res;
+        Queue<Employees> eQueue = new Queue<Employees>();
+        eQueue.Enqueue(DFSPreOrder(root, low));
+        Stack<Employees> hiStack = new Stack<Employees>();
+        hiStack.Push(DFSPreOrderHigh(root, high));
+        foreach (Employees e in hiStack) 
+        {
+            eQueue.Enqueue(hiStack.Pop());
+        }
+        foreach (Employees e in eQueue)
+        {            
+            Employees b =  eQueue.Dequeue();
+            Debug.Log($"Employee name: {b.Name}, employees last exit from engine room: {b.parsedExit} ");
+        }
     }
 
-    static void DfsRec(List<List<int>> adj, bool[] visited, int s, List<int> res)
+    public Employees DFSPreOrder(Node node, DateTime date)
     {
-        visited[s] = true;
-        res.Add(s);
-
-        foreach(int i in adj[s])
+        if (node.data.parsedExit.CompareTo(date) <= 0)
         {
-            if (!visited[i])
-                DfsRec(adj, visited, i, res);
+            if (node.left.data.parsedExit.CompareTo(date) <= 0)
+            { DFSPreOrder(node.left, date); }
+            else if (node.right.data.parsedExit.CompareTo(date) <= 0)
+            { DFSPreOrder(node.right, date); }
+            else { return node.data; }
         }
+        return null;
+    }
+
+    public Employees DFSPreOrderHigh(Node node, DateTime date)
+    {
+        if (node.left.data.parsedExit.CompareTo(date) < 0)
+        { DFSPreOrderHigh(node.left, date); }
+        else if (node.right.data.parsedExit.CompareTo(date) < 0)
+        { DFSPreOrderHigh(node.right, date); }
+        else { return node.data; }
+        return null;
     }
     
        //    https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/
