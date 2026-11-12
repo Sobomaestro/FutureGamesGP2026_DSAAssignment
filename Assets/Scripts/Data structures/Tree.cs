@@ -21,39 +21,78 @@ public class Node
         data = x;
         left = null;
         right = null;
+
     }
 }
 
 public class TreeNode
 {
-    public static void Insert(Node root, Employees key)
-    {        
-
-        if (root == null)
-            root = new(key);
-
-        if (key.parsedExit.CompareTo(root.data.parsedExit) <= 0)
+    Node root;
+    public Node GetList(List<Employees> empList)
+    {
+        int mid = empList.Count / 2;
+        for (int i = mid; i >= 0; i--)
         {
-            if (root.left == null)
+            Insert(empList[i]);
+        }
+        for (int i = mid + 1; i < empList.Count; i++)
+        {
+            Insert(empList[i]);
+        }
+        return root;
+    }
+    int leftCount = 0;
+    int rightCount = 0;
+    public void Insert(Employees key)
+    {
+        if (root == null)
+        { root = new(key); return;}
+        Node currentNode = root;
+
+        while (currentNode != null)
+        {
+            if (key.parsedExit.CompareTo(currentNode.data.parsedExit) < 0)
             {
-                root.left = new Node(key);
+                if (currentNode.left == null)
+                { currentNode.left = new Node(key); leftCount++; break; }
+                else currentNode = currentNode.left;
             }
-            else
+            else 
             {
-                Insert(root.left, key);
+                if (currentNode.right == null)
+                { currentNode.right = new Node(key); rightCount++;  break; }
+                else currentNode = currentNode.right;
             }
         }
-        else
-            if (root.right == null)
-            {
-                root.right = new Node(key);
-            }
-            else
-            {
-                Insert(root.right, key);
-            }
+
     }
 
+    public void DFSBoi()
+    {
+        Node currentNode = root;
+        Stack<Node> nodeStack = new Stack<Node>();
+        int i = 0;
+        while ( i < 1600)
+        { 
+            while (currentNode != null)
+            {
+                nodeStack.Push(currentNode);
+                currentNode = currentNode.left;
+            }
+            if (nodeStack.Count > 0)
+            { currentNode = nodeStack.Pop(); }
+            else if (nodeStack.Count == 0)
+            { break; }
+            if (currentNode != null)
+            {
+                //Debug.Log(currentNode.data.Name + " " + currentNode.data.parsedExit.ToString());
+            }
+            currentNode = currentNode.right;
+            i++;  
+            
+        }
+    }
+    #region lavaFlow
     public void TreeSearchSpan(Node root, DateTime low, DateTime high)
     {
         Queue<Employees> eQueue = new Queue<Employees>();
@@ -98,5 +137,5 @@ public class TreeNode
        //    https://github.com/gt4dev/yet-another-tree-structure/blob/master/csharp/CSharpTree/TreeNode.cs
     
 }
-
+#endregion
 

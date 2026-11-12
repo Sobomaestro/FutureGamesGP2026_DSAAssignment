@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 namespace Environment.Tasks
 {
     [CreateAssetMenu(fileName = "BinarySearchTask", menuName = "Scriptable Objects/BinarySearchTask")]
-    public class BinarySearchTask : ScriptableObject
+    public class BinarySearchTask : Task
     {
         EmployeeList employees = new EmployeeList();
         EmployeeList indexCutList = new EmployeeList();
@@ -15,6 +15,11 @@ namespace Environment.Tasks
         public int lowIndex;
         public int highIndex;
         public int midIndex;
+
+        public override void Execute()
+        {
+            
+        }
         
 
         public int[] IntakeSearchData(EmployeeList listToSearch, DateTime lowSearchFloor, DateTime highSearchRoof)

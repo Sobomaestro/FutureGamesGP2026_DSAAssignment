@@ -94,12 +94,13 @@ namespace Environment.Tasks
         }
 
         public void UpdateTask()
-        {            
+        {
+            currentTask = TaskPeeker();
             if (playerTasks.Count > 0)
             {
-                taskText.text = playerTasks.Peekaboo().ToString();
-            }
-            else taskText.text = "All tasks completed my liege. Good job";
+                taskText.text = currentTask.ToString();
+            }            
+            else { taskText.text = "All tasks completed my liege. Good job"; }
             CheckEmail();
         }
         public void LazyTasker()

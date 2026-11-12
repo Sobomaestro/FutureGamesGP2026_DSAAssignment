@@ -22,7 +22,7 @@ namespace Environment
 
         void Awake()
         {
-     
+
         }
 
         public void RecycledTasks(Task thrown)

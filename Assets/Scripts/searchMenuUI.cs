@@ -48,7 +48,7 @@ public class searchMenuUI : MonoBehaviour
         sw2.Start();
         CheckDates(lowYearTbx.text, lowMonthTbx.text, lowDayTbx.text);
         var sw = new Stopwatch();
-        
+        var sw3 = new Stopwatch();
         if (validDateTime)
         { spanFloor = DateTime.Parse(lowYearTbx.text + "-" + lowMonthTbx.text + "-" + lowDayTbx.text + "T" + lowHourTbx.text + ":" + lowMinuteTbx.text + ":" + lowSecondTbx.text); }
         else { errorBox.text = "Low date is not valid, check your entries";  return; }
@@ -57,15 +57,21 @@ public class searchMenuUI : MonoBehaviour
         if (validDateTime)
         { spanCeiling = DateTime.Parse(highYearTbx.text + "-" + highMonthTbx.text + "-" + highDayTbx.text + "T" + highHourTbx.text + ":" + highMinuteTbx.text + ":" + highSecondTbx.text); }
         else { errorBox.text = "High date is not valid, check your entries"; return; }
+        if (spanFloor.CompareTo(spanCeiling) > 0)
+        { errorBox.text = "you need to switch your dates..."; return; }
+        else;
         Node root = jsonList.NodeSend();
         EmployeeList searchList = jsonList.ListSend();
         sw.Start();
         indexLowHigh = binarySearch.IntakeSearchData(searchList, spanFloor, spanCeiling);
-        sw.Stop();
+        sw.Stop();        
+        sw3.Start();
         treeDFS.TreeSearchSpan(root, spanFloor, spanCeiling);
-        UnityEngine.Debug.Log("Search right before and after the actual search took: " + sw.ElapsedTicks + " Ticks");
+        sw3.Stop();
+        UnityEngine.Debug.Log("Binary Search took: " + sw.ElapsedTicks + " Ticks");
+        UnityEngine.Debug.Log("BST DSF took : " + sw3.ElapsedTicks + " Ticks");
         jsonList.PrintSearchSpan(indexLowHigh);
-        sw2.Stop();
+
         UnityEngine.Debug.Log("Entire search task took around: " + sw2.ElapsedTicks + " Ticks");
     }
 

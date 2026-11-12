@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Stack2TheStreets<T> {
     public int Count { get => stackData.Count; }
-    private readonly List<T> stackData;
+    private List<T> stackData;
     public Stack2TheStreets() {
         this.stackData = new List<T>();
     }
